@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -30,6 +30,65 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentLightboxIndex, setCurrentLightboxIndex] = useState(0);
+
+  useEffect(() => {
+    // 1. Scroll Reveal Intersection Observer
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // 2. Magnetic Buttons Interactive Effect
+    const magButtons = document.querySelectorAll<HTMLElement>(".mag-btn");
+    const onMagMove = (e: MouseEvent) => {
+      const btn = e.currentTarget as HTMLElement;
+      const rect = btn.getBoundingClientRect();
+      const cx = e.clientX - (rect.left + rect.width / 2);
+      const cy = e.clientY - (rect.top + rect.height / 2);
+      btn.style.transform = `translate(${cx * 0.25}px, ${cy * 0.25}px)`;
+    };
+    const onMagLeave = (e: MouseEvent) => {
+      const btn = e.currentTarget as HTMLElement;
+      btn.style.transform = "";
+    };
+
+    magButtons.forEach((btn) => {
+      btn.addEventListener("mousemove", onMagMove);
+      btn.addEventListener("mouseleave", onMagLeave);
+    });
+
+    // 3. Smooth Anchor Scrolling
+    const anchors = document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]');
+    const onAnchorClick = (e: MouseEvent) => {
+      const a = e.currentTarget as HTMLAnchorElement;
+      const hash = a.getAttribute("href");
+      if (!hash || hash === "#") return;
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    anchors.forEach((a) => a.addEventListener("click", onAnchorClick));
+
+    return () => {
+      io.disconnect();
+      magButtons.forEach((btn) => {
+        btn.removeEventListener("mousemove", onMagMove);
+        btn.removeEventListener("mouseleave", onMagLeave);
+      });
+      anchors.forEach((a) => a.removeEventListener("click", onAnchorClick));
+    };
+  }, []);
 
   // Compile all interactive project items into a single master collection for seamless arrow navigation
   const allLightboxItems = useMemo<LightboxItem[]>(() => {
@@ -86,7 +145,7 @@ export default function Home() {
 
   const handleOpenLightbox = (item: LightboxItem) => {
     const foundIndex = allLightboxItems.findIndex(
-      (i) => i.src === item.src && i.title === item.title
+      (i) => i.src === item.src
     );
     setCurrentLightboxIndex(foundIndex >= 0 ? foundIndex : 0);
     setLightboxOpen(true);

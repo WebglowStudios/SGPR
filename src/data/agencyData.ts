@@ -5,6 +5,7 @@ import {
   ServiceItem,
   StatItem,
   ClientLogo,
+  MarqueeItem,
 } from "@/types";
 
 export const CAROUSEL_ROWS: CarouselRowData[] = [
@@ -202,28 +203,28 @@ export const CAROUSEL_ROWS: CarouselRowData[] = [
   },
 ];
 
-export const MARQUEE_ITEMS_1 = [
-  "ALL WORK",
-  "SELECTED PR CASES",
-  "BRAND WORLDS",
-  "MUMBAI & BEYOND",
-  "EDITORIAL DIRECTION",
-  "ALL WORK",
-  "SELECTED PR CASES",
-  "BRAND WORLDS",
-  "MUMBAI & BEYOND",
-  "EDITORIAL DIRECTION",
+export const MARQUEE_ITEMS_1: MarqueeItem[] = [
+  { text: "ALL WORK" },
+  { text: "SELECTED", em: "PR CASES" },
+  { text: "BRAND WORLDS" },
+  { text: "MUMBAI &", em: "BEYOND" },
+  { text: "EDITORIAL DIRECTION" },
+  { text: "ALL WORK" },
+  { text: "SELECTED", em: "PR CASES" },
+  { text: "BRAND WORLDS" },
+  { text: "MUMBAI &", em: "BEYOND" },
+  { text: "EDITORIAL DIRECTION" },
 ];
 
-export const MARQUEE_ITEMS_2 = [
-  "MEDIA PLACEMENTS",
-  "EXECUTIVE POSITIONING",
-  "HIGH JEWELRY",
-  "CULTURE & COMMERCE",
-  "MEDIA PLACEMENTS",
-  "EXECUTIVE POSITIONING",
-  "HIGH JEWELRY",
-  "CULTURE & COMMERCE",
+export const MARQUEE_ITEMS_2: MarqueeItem[] = [
+  { text: "MEDIA PLACEMENTS" },
+  { text: "EXECUTIVE", em: "POSITIONING" },
+  { text: "HIGH JEWELRY" },
+  { text: "CULTURE &", em: "COMMERCE" },
+  { text: "MEDIA PLACEMENTS" },
+  { text: "EXECUTIVE", em: "POSITIONING" },
+  { text: "HIGH JEWELRY" },
+  { text: "CULTURE &", em: "COMMERCE" },
 ];
 
 export const FEATURE_GRID_ITEMS: {

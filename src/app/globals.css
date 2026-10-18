@@ -1,30 +1,34 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   v4 â€” KINETIC EDITORIAL
+/* ════════════════════════════════════════
+   v4 — KINETIC EDITORIAL
    Agency Typography: Neue Haas Grotesk + Instrument Serif / Playfair Display + Plus Jakarta Sans / Inter
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
+
 
 @font-face {
   font-family: 'neue-haas-grotesk-display-pro';
   font-style: normal;
   font-weight: 700;
-  src: url('https://static.parastorage.com/fonts/v2/29384c45-df1d-4d28-a0c3-3ed95c653ff4/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
+  src: url('/fonts/neue-haas-grotesk-bold.woff2') format('woff2'),
+       url('https://static.parastorage.com/fonts/v2/29384c45-df1d-4d28-a0c3-3ed95c653ff4/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'neue-haas-grotesk-display-pro';
   font-style: normal;
   font-weight: 500;
-  src: url('https://static.parastorage.com/fonts/v2/d0521924-fc64-47a2-a857-2cbdc0fad5c8/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
+  src: url('/fonts/neue-haas-grotesk-medium.woff2') format('woff2'),
+       url('https://static.parastorage.com/fonts/v2/d0521924-fc64-47a2-a857-2cbdc0fad5c8/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'neue-haas-grotesk-display-pro';
   font-style: normal;
   font-weight: 900;
-  src: url('https://static.parastorage.com/fonts/v2/29384c45-df1d-4d28-a0c3-3ed95c653ff4/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
+  src: url('/fonts/neue-haas-grotesk-bold.woff2') format('woff2'),
+       url('https://static.parastorage.com/fonts/v2/29384c45-df1d-4d28-a0c3-3ed95c653ff4/v1/neue-haas-grotesk-display-pro.latin.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -72,7 +76,7 @@ img { display:block; width:100%; height:100%; object-fit:cover; }
 a   { color:inherit; text-decoration:none; }
 button { background:none; border:none; font-family:inherit; cursor:none; }
 
-/* â”€â”€ EDITORIAL ACCENTS & SERIF ITALICS â”€â”€ */
+/* ── EDITORIAL ACCENTS & SERIF ITALICS ── */
 .cursive-the,
 .cursive-and,
 .cursive-accent,
@@ -100,9 +104,9 @@ em {
   text-decoration-color: var(--gold);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CUSTOM CURSOR â€” outer ring + dot
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ════════════════════════════════════════
+   CUSTOM CURSOR — outer ring + dot
+   ════════════════════════════════════════ */
 #cur-outer {
   position: fixed;
   width: 40px; height: 40px;
@@ -165,9 +169,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   to   { opacity:0;  transform: translate(-50%,-50%) scale(0); }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ════════════════════════════════════════
    NAVBAR
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 #nav {
   position: fixed;
   inset: 0 0 auto 0;
@@ -247,9 +251,9 @@ body:has(.carousel-btn:hover) #cur-outer {
 #burger.open .bun.top { transform: translateY(7px) rotate(45deg); }
 #burger.open .bun.bot { transform: translateY(-7px) rotate(-45deg); }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ════════════════════════════════════════
    FULLSCREEN MENU OVERLAY
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 #overlay {
   position: fixed;
   inset: 0;
@@ -344,9 +348,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   .ov-right { display: none; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ════════════════════════════════════════
    UTILITY
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 .eyebrow {
   display: block;
   font-size: .6rem;
@@ -364,9 +368,9 @@ body:has(.carousel-btn:hover) #cur-outer {
 }
 .reveal.in { opacity: 1; transform: none; }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   HERO â€” HIGH-FASHION EDITORIAL SHOWREEL
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ════════════════════════════════════════
+   HERO — HIGH-FASHION EDITORIAL SHOWREEL
+   ════════════════════════════════════════ */
 #hero.hero-cinematic {
   position: relative;
   min-height: 100svh;
@@ -401,7 +405,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   transform: scale(1.05);
 }
 
-/* Luxurious Velvety Scrim â€” Enhanced for Bottom-Left Contrast */
+/* Luxurious Velvety Scrim — Enhanced for Bottom-Left Contrast */
 .hero-video-scrim {
   position: absolute;
   inset: 0;
@@ -427,7 +431,7 @@ body:has(.carousel-btn:hover) #cur-outer {
 }
 
 
-/* Main Editorial Content â€” Positioned at Bottom-Left */
+/* Main Editorial Content — Positioned at Bottom-Left */
 .hero-content {
   position: relative;
   z-index: 5;
@@ -589,9 +593,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   color: rgba(237, 231, 218, 0.8);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   OUR WORK â€” HEADER & CATEGORY FILTER TABS
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ════════════════════════════════════════
+   OUR WORK — HEADER & CATEGORY FILTER TABS
+   ════════════════════════════════════════ */
 .work-head-container {
   padding: 5rem 5% 1.8rem 5%;
   background: var(--bg);
@@ -748,7 +752,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   50% { transform: scale(1.3); opacity: 0.6; }
 }
 
-/* â”€â”€ CAROUSEL ROWS (Agency.html layout) â”€â”€ */
+/* ── CAROUSEL ROWS (Agency.html layout) ── */
 .carousel-section {
   width: 100%;
   position: relative;
@@ -915,7 +919,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   stroke-width: 2.5;
 }
 
-/* â”€â”€ ROW SPECIFIC PROPORTIONS (Authentic Agency.html Ratios) â”€â”€ */
+/* ── ROW SPECIFIC PROPORTIONS (Authentic Agency.html Ratios) ── */
 /* Row 1 proportions */
 .row-1 .slide-0 { width: calc(32% - 4px); }
 .row-1 .slide-1 { width: calc(36% - 4px); }
@@ -954,7 +958,7 @@ body:has(.carousel-btn:hover) #cur-outer {
 .row-6 .slide-1 { width: calc(42% - 3px); }
 .row-6 .slide-2 { width: calc(50% - 3px); }
 
-/* â”€â”€ MARQUEE RIBBONS (The 2 Scrolling Carousels in Our Work) â”€â”€ */
+/* ── MARQUEE RIBBONS (The 2 Scrolling Carousels in Our Work) ── */
 .marquee-wrapper,
 #marquee-1,
 #marquee-2 {
@@ -1026,7 +1030,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   fill: var(--gold);
 }
 
-/* â”€â”€ FEATURE 3-COLUMN SECTION (Row 8 Style) â”€â”€ */
+/* ── FEATURE 3-COLUMN SECTION (Row 8 Style) ── */
 .feature-grid-section {
   width: 100%;
   padding: 0 3px;
@@ -1090,7 +1094,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   filter: brightness(0.85);
 }
 
-/* â”€â”€ MASONRY 3-COLUMN SHOWCASE (Row 10 Style) â”€â”€ */
+/* ── MASONRY 3-COLUMN SHOWCASE (Row 10 Style) ── */
 .masonry-section {
   width: 100%;
   padding: 0 3px;
@@ -1173,9 +1177,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   transform: scale(1.04);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SERVICES â€” Split accordion
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ════════════════════════════════════════
+   SERVICES — Split accordion
+   ════════════════════════════════════════ */
 #services {
   background: var(--bg);
   border-top: 1px solid var(--border);
@@ -1287,10 +1291,10 @@ body:has(.carousel-btn:hover) #cur-outer {
   transform: scale(1.04);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   ABOUT / MANIFESTO â€” HIGH-FASHION EDITORIAL (Lirona Style)
+/* ════════════════════════════════════════
+   ABOUT / MANIFESTO — HIGH-FASHION EDITORIAL (Lirona Style)
    Rich Velvet Emerald Green (#0d271a) + Gold Hairlines
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 .about-section {
   padding: clamp(6.5rem, 10vw, 10rem) 5%;
   background: #0d271a;
@@ -1579,10 +1583,10 @@ body:has(.carousel-btn:hover) #cur-outer {
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CLIENTELE â€” Continuous Infinite Marquee Carousel
+/* ════════════════════════════════════════
+   CLIENTELE — Continuous Infinite Marquee Carousel
    (Matches Previous Our Work Section Layout & Kinetics)
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 .clientele-section {
   padding: 8rem 0 0 0;
   background: var(--ink);
@@ -1646,7 +1650,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   letter-spacing: 0.01em;
 }
 
-/* â”€â”€ The Carousel Strip (matches previous Our Work marquee layout, featuring brand logos) â”€â”€ */
+/* ── The Carousel Strip (matches previous Our Work marquee layout, featuring brand logos) ── */
 .clientele-carousel {
   overflow: hidden;
   padding: 3rem 0;
@@ -1763,7 +1767,7 @@ body:has(.carousel-btn:hover) #cur-outer {
   letter-spacing: 0.02em;
 }
 
-/* â”€â”€ Bottom Label & CTA Strip â”€â”€ */
+/* ── Bottom Label & CTA Strip ── */
 .clientele-bottom-strip {
   display: flex;
   align-items: center;
@@ -1786,9 +1790,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ════════════════════════════════════════
    CONTACT
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 #contact {
   padding: 8rem 5%;
   background: var(--ink);
@@ -1922,9 +1926,9 @@ body:has(.carousel-btn:hover) #cur-outer {
   box-shadow: 0 16px 40px rgba(192,151,59,.3);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ════════════════════════════════════════
    FOOTER
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ════════════════════════════════════════ */
 footer {
   padding: 2.5rem 5%;
   background: var(--bg);
@@ -1987,9 +1991,9 @@ footer {
   color: var(--cream);
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   LIGHTBOX MODAL â€” v4 Dark Gold Luxury Style
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ════════════════════════════════════════
+   LIGHTBOX MODAL — v4 Dark Gold Luxury Style
+   ════════════════════════════════════════ */
 .lightbox-modal {
   position: fixed;
   inset: 0;

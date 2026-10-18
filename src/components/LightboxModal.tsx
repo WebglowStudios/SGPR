@@ -43,6 +43,7 @@ export default function LightboxModal({
   return (
     <div
       className={`lightbox-modal ${isOpen ? "active" : ""}`}
+      id="lightboxModal"
       role="dialog"
       aria-modal="true"
       aria-label="Project Preview"
@@ -50,6 +51,7 @@ export default function LightboxModal({
     >
       <button
         className="lightbox-close"
+        id="lightboxClose"
         onClick={onClose}
         aria-label="Close modal"
       >
@@ -58,6 +60,7 @@ export default function LightboxModal({
 
       <button
         className="lightbox-nav prev"
+        id="lightboxPrev"
         onClick={(e) => {
           e.stopPropagation();
           onNavigate(-1);
@@ -69,6 +72,7 @@ export default function LightboxModal({
 
       <button
         className="lightbox-nav next"
+        id="lightboxNext"
         onClick={(e) => {
           e.stopPropagation();
           onNavigate(1);
@@ -86,13 +90,18 @@ export default function LightboxModal({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="lightbox-img"
+            id="lightboxImg"
             src={item.src}
             alt={item.title}
           />
         </div>
         <div className="lightbox-meta">
-          <h3 className="lightbox-title">{item.title}</h3>
-          <p className="lightbox-caption">{item.caption}</p>
+          <h3 className="lightbox-title" id="lightboxTitle">
+            {item.title}
+          </h3>
+          <p className="lightbox-caption" id="lightboxCaption">
+            {item.caption}
+          </p>
         </div>
       </div>
     </div>

@@ -1,10 +1,6 @@
 "use client";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer>
       <div className="fl">
@@ -20,9 +16,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="fc">
-        <button onClick={scrollToTop} className="f-back-top">
+        <a href="#hero" className="f-back-top">
           Back to top ↑
-        </button>
+        </a>
       </div>
     </footer>
   );

@@ -1,16 +1,9 @@
 "use client";
 
 export default function Hero() {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="hero" className="hero-cinematic">
-      {/* Looping Showreel Backdrop */}
+      {/* Cinematic Looping Showreel Backdrop */}
       <div className="hero-video-wrap">
         <video
           id="heroBannerVideo"
@@ -32,42 +25,35 @@ export default function Hero() {
 
       {/* Main Editorial Content */}
       <div className="hero-content">
-        <div className="hero-meta">
+        <div className="hero-meta reveal">
           <span className="hero-pill">Direction &amp; Brand Architecture</span>
           <span className="hero-pill-sep">·</span>
           <span className="hero-location">Mumbai · Global</span>
         </div>
 
         <div className="hero-headline-wrap">
-          <h1 className="hero-name">SAMIT GUGLE</h1>
-          <p className="hero-lead">
-            Strategic Public Relations <span className="lead-amp">&amp;</span>{" "}
-            Narrative Direction for brands that shape culture.
+          <h1 className="hero-name reveal" style={{ "--d": ".1s" } as React.CSSProperties}>
+            SAMIT GUGLE
+          </h1>
+          <p className="hero-lead reveal" style={{ "--d": ".2s" } as React.CSSProperties}>
+            Strategic Public Relations <span className="lead-amp">&amp;</span> Narrative Direction for brands that shape culture.
           </p>
         </div>
 
-        <div className="hero-foot-row">
-          <button
-            onClick={() => scrollTo("works")}
-            className="hero-cta-btn mag-btn cursor-pointer"
-          >
+        <div className="hero-foot-row reveal" style={{ "--d": ".3s" } as React.CSSProperties}>
+          <a href="#works" className="hero-cta-btn">
             Selected Works <span className="arrow">↓</span>
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className="hero-cta-link mag-btn cursor-pointer"
-          >
+          </a>
+          <a href="#contact" className="hero-cta-link">
             Start a Project <span className="arrow">↗</span>
-          </button>
+          </a>
         </div>
       </div>
 
-      {/* Editorial Bottom Coordinates Strip */}
+      {/* Editorial Bottom Strip */}
       <div className="hero-strip">
         <span className="hs-label">Scroll to Explore ↓</span>
-        <p className="hs-desc">
-          Narrative-led brand elevation for brands that demand more.
-        </p>
+        <p className="hs-desc">Narrative-led brand elevation for brands that demand more.</p>
         <span className="hs-year">© 2026</span>
       </div>
     </section>

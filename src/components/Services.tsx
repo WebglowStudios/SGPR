@@ -25,7 +25,7 @@ export default function Services() {
       <div className="srv-split">
         {/* Left: Accordion list */}
         <div className="srv-list-col">
-          <span className="eyebrow">What We Do</span>
+          <span className="eyebrow reveal">What We Do</span>
 
           {SERVICES_LIST.map((service, index) => {
             const isActive = activeIndex === index;
@@ -34,6 +34,7 @@ export default function Services() {
               <div
                 key={service.num}
                 className={`srv-acc-item ${isActive ? "active" : ""}`}
+                data-img={service.img}
               >
                 <button
                   className="srv-hd"

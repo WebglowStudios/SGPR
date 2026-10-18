@@ -54,3 +54,9 @@ export interface ClientLogo {
   src: string;
   caption: string;
 }
+
+export interface MarqueeItem {
+  text: string;
+  em?: string;
+}
+

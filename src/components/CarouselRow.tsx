@@ -71,10 +71,11 @@ export default function CarouselRow({
 
   return (
     <section
-      className={`carousel-section row-${data.id} transition-opacity duration-500`}
+      className={`carousel-section row-${data.id}`}
       style={{
         opacity: isVisible ? 1 : 0.35,
-        display: isVisible ? "block" : "block",
+        display: isVisible ? "" : "block",
+        transition: "opacity 0.4s ease",
       }}
       data-category={data.category}
     >
@@ -110,6 +111,9 @@ export default function CarouselRow({
             <div
               key={index}
               className={`carousel-slide slide-${index}`}
+              data-lightbox-src={slideItem.src}
+              data-lightbox-title={slideItem.title}
+              data-lightbox-caption={slideItem.caption}
               onClick={() =>
                 onOpenLightbox({
                   src: slideItem.src,
@@ -127,8 +131,7 @@ export default function CarouselRow({
               <div className="card-overlay">
                 <span className="card-tag">{slideItem.tag}</span>
                 <div className="card-title">
-                  <span>{slideItem.title}</span>
-                  <span className="card-arrow">↗</span>
+                  {slideItem.title} <span className="card-arrow">↗</span>
                 </div>
               </div>
             </div>

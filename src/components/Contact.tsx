@@ -43,7 +43,7 @@ export default function Contact() {
         GROW
       </div>
       <div className="contact-inner">
-        <div className="contact-head">
+        <div className="contact-head reveal">
           <span className="eyebrow">Book a Call</span>
           <h2 className="ch">
             Let&apos;s make
@@ -54,7 +54,13 @@ export default function Contact() {
           </h2>
         </div>
 
-        <form id="cform" onSubmit={handleSubmit} noValidate>
+        <form
+          id="cform"
+          className="reveal"
+          style={{ "--d": ".2s" } as React.CSSProperties}
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <div className="fg-row">
             <div className="fg">
               <input

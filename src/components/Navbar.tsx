@@ -25,11 +25,13 @@ export default function Navbar() {
     }
   };
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setMenuOpen(false);
     document.body.style.overflow = "";
-
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
@@ -38,10 +40,11 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── NAV ── */}
       <header id="nav" className={scrolled ? "scrolled" : ""}>
         <a
-          href="#"
           className="nav-logo"
+          href="#"
           aria-label="Samit Gugle PR Agency"
           onClick={(e) => {
             e.preventDefault();
@@ -58,11 +61,10 @@ export default function Navbar() {
             Samit Gugle<span className="nav-dot">.</span>
           </span>
         </a>
-
         <button
           id="burger"
           className={menuOpen ? "open" : ""}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label="Open menu"
           onClick={toggleMenu}
         >
           <div className="bun top" />
@@ -70,7 +72,7 @@ export default function Navbar() {
         </button>
       </header>
 
-      {/* Fullscreen Overlay */}
+      {/* ── FULLSCREEN MENU ── */}
       <div id="overlay" className={menuOpen ? "open" : ""}>
         <div className="ov-left">
           <a
@@ -109,7 +111,6 @@ export default function Navbar() {
             <span>Contact</span>
           </a>
         </div>
-
         <div className="ov-right">
           <video autoPlay loop muted playsInline className="ov-vid">
             <source
@@ -124,7 +125,7 @@ export default function Navbar() {
               alt="Samit Gugle Logo"
               className="ov-logo-img"
             />
-            <p className="font-semibold text-white/90">Samit Gugle PR Agency</p>
+            <p>Samit Gugle PR Agency</p>
             <p>Mumbai · India · Est. 2020</p>
           </div>
         </div>

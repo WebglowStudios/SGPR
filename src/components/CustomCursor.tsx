@@ -8,61 +8,66 @@ export default function CustomCursor() {
   const trailWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only run custom cursor on fine pointer devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const outer = outerRef.current;
+    const inner = innerRef.current;
+    const trailWrap = trailWrapRef.current;
+    if (!outer || !inner || !trailWrap) return;
 
-    let mx = 0;
-    let my = 0;
-    let ox = 0;
-    let oy = 0;
+    let mx = -100;
+    let my = -100;
+    let ox = -100;
+    let oy = -100;
+    let first = true;
     let animId: number;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMouseMove = (e: MouseEvent) => {
       mx = e.clientX;
       my = e.clientY;
 
-      if (innerRef.current) {
-        innerRef.current.style.left = `${mx}px`;
-        innerRef.current.style.top = `${my}px`;
+      if (first) {
+        ox = mx;
+        oy = my;
+        first = false;
+        outer.style.left = `${ox}px`;
+        outer.style.top = `${oy}px`;
       }
 
+      inner.style.left = `${mx}px`;
+      inner.style.top = `${my}px`;
+
       // Spawn trail dot
-      if (trailWrapRef.current) {
-        const dot = document.createElement("div");
-        dot.className = "trail-dot";
-        dot.style.left = `${mx}px`;
-        dot.style.top = `${my}px`;
-        trailWrapRef.current.appendChild(dot);
-        setTimeout(() => {
-          dot.remove();
-        }, 600);
-      }
+      const dot = document.createElement("div");
+      dot.className = "trail-dot";
+      dot.style.left = `${mx}px`;
+      dot.style.top = `${my}px`;
+      trailWrap.appendChild(dot);
+      setTimeout(() => {
+        dot.remove();
+      }, 600);
     };
 
     const animOuter = () => {
       ox += (mx - ox) * 0.12;
       oy += (my - oy) * 0.12;
-      if (outerRef.current) {
-        outerRef.current.style.left = `${ox}px`;
-        outerRef.current.style.top = `${oy}px`;
-      }
+      outer.style.left = `${ox}px`;
+      outer.style.top = `${oy}px`;
       animId = requestAnimationFrame(animOuter);
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mousemove", onMouseMove, { passive: true });
     animId = requestAnimationFrame(animOuter);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mousemove", onMouseMove);
       cancelAnimationFrame(animId);
     };
   }, []);
 
   return (
     <>
-      <div id="cur-outer" ref={outerRef} aria-hidden="true" />
-      <div id="cur-inner" ref={innerRef} aria-hidden="true" />
-      <div id="cur-trail-wrap" ref={trailWrapRef} aria-hidden="true" />
+      <div id="cur-outer" ref={outerRef} />
+      <div id="cur-inner" ref={innerRef} />
+      <div id="cur-trail-wrap" ref={trailWrapRef} />
     </>
   );
 }

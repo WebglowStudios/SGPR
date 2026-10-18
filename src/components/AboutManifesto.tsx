@@ -58,13 +58,13 @@ export default function AboutManifesto() {
     <section id="about" className="about-section" ref={sectionRef}>
       <div className="about-container">
         {/* Top Eyebrow Strip */}
-        <div className="about-top-bar">
+        <div className="about-top-bar reveal">
           <span className="eyebrow">Studio Practice &amp; Manifesto</span>
           <span className="about-loc-tag">Mumbai · London · Worldwide</span>
         </div>
 
         {/* Monumental Editorial Statement */}
-        <div className="about-manifesto-wrap">
+        <div className="about-manifesto-wrap reveal" style={{ "--d": ".1s" } as React.CSSProperties}>
           <h2 className="about-manifesto-heading">
             <span className="manifesto-row">We are a</span>
             <span className="manifesto-row manifesto-serif">
@@ -78,7 +78,7 @@ export default function AboutManifesto() {
         </div>
 
         {/* Supporting Editorial Narrative */}
-        <div className="about-narrative-wrap">
+        <div className="about-narrative-wrap reveal" style={{ "--d": ".2s" } as React.CSSProperties}>
           <p className="about-narrative">
             A creative practice directing <span className="cursive-and">&amp;</span>{" "}
             shaping brand worlds as they emerge, evolve, or transform. Combining
@@ -88,11 +88,11 @@ export default function AboutManifesto() {
         </div>
 
         {/* Horizontal Editorial Metrics Strip */}
-        <div className="about-metrics-strip">
+        <div className="about-metrics-strip reveal" style={{ "--d": ".3s" } as React.CSSProperties}>
           {/* Metric 1 */}
           <div className="about-metric">
             <div className="metric-val-wrap">
-              <span className="stat-num">{counts[0]}</span>
+              <span className="stat-num" data-count="50">{counts[0]}</span>
               <span className="metric-plus">+</span>
             </div>
             <span className="metric-label">{ABOUT_STATS[0].label}</span>
@@ -104,7 +104,7 @@ export default function AboutManifesto() {
           {/* Metric 2 */}
           <div className="about-metric">
             <div className="metric-val-wrap">
-              <span className="stat-num">{counts[1]}</span>
+              <span className="stat-num" data-count="6">{counts[1]}</span>
               <span className="metric-plus">+</span>
             </div>
             <span className="metric-label">{ABOUT_STATS[1].label}</span>
@@ -116,7 +116,7 @@ export default function AboutManifesto() {
           {/* Metric 3 */}
           <div className="about-metric">
             <div className="metric-val-wrap">
-              <span className="stat-num">{counts[2]}</span>
+              <span className="stat-num" data-count="200">{counts[2]}</span>
               <span className="metric-plus">+</span>
             </div>
             <span className="metric-label">{ABOUT_STATS[2].label}</span>
@@ -139,7 +139,7 @@ export default function AboutManifesto() {
         </div>
 
         {/* Editorial Footer Action */}
-        <div className="about-cta-wrap">
+        <div className="about-cta-wrap reveal" style={{ "--d": ".35s" } as React.CSSProperties}>
           <a
             href="#contact"
             onClick={handleStartProject}
