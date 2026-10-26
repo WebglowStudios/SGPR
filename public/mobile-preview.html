@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samit Gugle — PR Agency &amp; Narrative Direction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════════════════════════════
+       DESIGN TOKENS & SYSTEM (Kinetic Luxury Editorial)
+       ══════════════════════════════════════════════════════════════════ */
+    :root {
+      --bg: #070709;
+      --ink: #0d0d10;
+      --surface: #101015;
+      --surface-elevated: #16161f;
+      --gold: #c0973b;
+      --gold-2: #ddb95a;
+      --gold-glow: rgba(192, 151, 59, 0.18);
+      --cream: #ede7da;
+      --off: rgba(237, 231, 218, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(192, 151, 59, 0.3);
+      --white: #ffffff;
+      --green-dark: #071910;
+      --green-mid: #0e2b1d;
+      --font-disp: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-family: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold-2);
+      font-weight: 400;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PERSISTENT HEADER & NAVIGATION
+       ══════════════════════════════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.3rem 5%;
+      background: rgba(7, 7, 9, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.35s var(--ease), background 0.35s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 10px rgba(192, 151, 59, 0.35));
+    }
+
+    .nav-logo-name {
+      font-family: var(--font-disp);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .nav-dot {
+      color: var(--gold);
+    }
+
+    .nav-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 100px;
+      background: rgba(192, 151, 59, 0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--ease);
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    #burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      z-index: 9000;
+    }
+
+    .bun {
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform 0.4s var(--ease), opacity 0.3s;
+    }
+
+    #burger.open .bun.top {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    #burger.open .bun.bot {
+      transform: translateY(-4px) rotate(-45deg);
+    }
+
+    /* FULLSCREEN OVERLAY MENU */
+    #overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 750;
+      background: rgba(7, 7, 9, 0.98);
+      backdrop-filter: blur(25px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 8%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+
+    #overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ov-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ov-link {
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+      transition: color 0.3s, padding-left 0.3s;
+    }
+
+    .ov-link:hover {
+      color: var(--gold-2);
+      padding-left: 10px;
+    }
+
+    .ov-link span.arrow {
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       HERO CINEMATIC — FULL HEIGHT 100VH ON MOBILE & DESKTOP
+       ══════════════════════════════════════════════════════════════════ */
+    #hero.hero-cinematic {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: contrast(1.1) brightness(0.62) saturate(0.95);
+      transform: scale(1.02);
+      transition: transform 1.8s var(--ease);
+    }
+
+    #hero:hover .hero-video {
+      transform: scale(1.04);
+    }
+
+    .hero-video-scrim {
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(180deg, 
+          rgba(7, 7, 9, 0.45) 0%, 
+          rgba(7, 7, 9, 0.1) 25%, 
+          rgba(7, 7, 9, 0.5) 55%, 
+          rgba(7, 7, 9, 0.96) 100%
+        ),
+        radial-gradient(ellipse at bottom left, rgba(7, 7, 9, 0.92) 0%, rgba(7, 7, 9, 0.5) 45%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.55;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      padding: 0 5% clamp(2.5rem, 5vh, 4rem) 5%;
+      max-width: 1200px;
+      margin-top: auto;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--gold-2);
+    }
+
+    .hero-pill-sep {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-location {
+      color: var(--off);
+      font-weight: 500;
+    }
+
+    .hero-name {
+      font-family: var(--font-disp);
+      font-weight: 900;
+      font-size: clamp(3rem, 8.5vw, 8.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      color: var(--cream);
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      text-shadow: 0 4px 35px rgba(0, 0, 0, 0.95);
+    }
+
+    .hero-lead {
+      font-size: clamp(0.98rem, 1.4vw, 1.25rem);
+      line-height: 1.5;
+      color: rgba(237, 231, 218, 0.88);
+      max-width: 680px;
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.015em;
+    }
+
+    .hero-foot-row {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      background: var(--cream);
+      color: #000;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      transition: all 0.35s var(--ease);
+    }
+
+    .hero-cta-btn:hover {
+      background: var(--gold-2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(192, 151, 59, 0.35);
+      color: #000;
+    }
+
+    .hero-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--off);
+      position: relative;
+      padding: 0.4rem 0;
+      transition: color 0.3s ease;
+    }
+
+    .hero-cta-link:hover {
+      color: var(--cream);
+    }
+
+    /* DESKTOP BOTTOM STRIP (Eliminated on mobile as requested) */
+    .hero-strip {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 5%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 7, 9, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hs-label, .hs-year {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--off);
+    }
+
+    .hs-desc {
+      font-size: clamp(0.85rem, 1.3vw, 1rem);
+      letter-spacing: -0.01em;
+      color: rgba(237, 231, 218, 0.8);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PORTFOLIO HEADER & STICKY FILTER TABS
+       ══════════════════════════════════════════════════════════════════ */
+    .work-head-container {
+      padding: 4.5rem 5% 1.4rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .work-head-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .work-title-wrap h2 {
+      font-family: var(--font-disp);
+      font-weight: 900;
+      font-size: clamp(2.6rem, 6.5vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--cream);
+    }
+
+    .work-subtitle {
+      font-size: clamp(0.92rem, 1.25vw, 1.12rem);
+      color: var(--off);
+      margin-top: 0.8rem;
+      max-width: 600px;
+    }
+
+    /* SCROLLABLE CATEGORY PILLS BAR */
+    .work-tabs-bar {
+      display: flex;
+      gap: 0.75rem;
+      padding-bottom: 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      position: sticky;
+      top: 66px;
+      z-index: 700;
+      background: rgba(7, 7, 9, 0.95);
+      backdrop-filter: blur(15px);
+      padding: 0.8rem 5%;
+      margin: 0 -5%;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-tabs-bar::-webkit-scrollbar { display: none; }
+
+    .work-tab-btn {
+      flex: 0 0 auto;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--off);
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.55rem 1.1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      transition: all 0.25s var(--ease);
+    }
+
+    .work-tab-btn:hover {
+      color: var(--cream);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .work-tab-btn.active {
+      background: var(--cream);
+      color: #000;
+      border-color: var(--cream);
+      font-weight: 800;
+    }
+
+    .work-tab-btn.avail-tab {
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #10b981;
+    }
+    .work-tab-btn.avail-tab.active {
+      background: #10b981;
+      color: #000;
+    }
+
+    .avail-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: #10b981;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       PORTFOLIO GRID SYSTEM — USING 100% AUTHENTIC LOCAL ASSETS
+       ══════════════════════════════════════════════════════════════════ */
+    .portfolio-wrapper {
+      padding: 1.5rem 5% 5rem;
+    }
+
+    /* DESKTOP GRID (Default): Elegant Asymmetric Bento Rows */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--ink);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.4s var(--ease), border-color 0.4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-gold);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+
+    .project-card:hover img {
+      transform: scale(1.035);
+    }
+
+    /* PERMANENT MOBILE-FRIENDLY OVERLAY */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(7, 7, 9, 0.25) 40%, 
+        rgba(7, 7, 9, 0.95) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.4rem;
+      pointer-events: none;
+    }
+
+    .card-badge {
+      align-self: flex-start;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-2);
+      background: rgba(192, 151, 59, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(192, 151, 59, 0.35);
+      padding: 3px 9px;
+      border-radius: 100px;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover .card-arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--off);
+      line-height: 1.4;
+    }
+
+    /* Desktop Column Spans */
+    .col-span-8 { grid-column: span 8; height: 500px; }
+    .col-span-4 { grid-column: span 4; height: 500px; }
+    .col-span-6 { grid-column: span 6; height: 420px; }
+    .col-span-12 { grid-column: span 12; height: 440px; }
+
+    /* FLUID TOUCH SWIPER SECTION */
+    .swiper-row-section {
+      grid-column: span 12;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+
+    .swiper-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .swiper-heading {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold-2);
+    }
+
+    .swiper-hint {
+      font-size: 0.72rem;
+      color: var(--off);
+    }
+
+    .swiper-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .swiper-track::-webkit-scrollbar { display: none; }
+
+    .swiper-card {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      position: relative;
+      height: 240px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    /* KINETIC MARQUEE RIBBON */
+    .marquee-wrapper {
+      grid-column: span 12;
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 2rem;
+      white-space: nowrap;
+      animation: ribbonLoop 24s linear infinite;
+    }
+
+    .marquee-item {
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .marquee-arrow {
+      color: var(--gold);
+      font-size: 0.9rem;
+    }
+
+    @keyframes ribbonLoop {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       SERVICES SECTION (WITH INLINE IMAGE REVEAL ON MOBILE!)
+       ══════════════════════════════════════════════════════════════════ */
+    #services {
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+      padding: 5rem 5%;
+    }
+
+    .srv-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    .srv-list-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .srv-acc-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .srv-acc-card.open {
+      border-color: var(--gold);
+      background: rgba(192, 151, 59, 0.04);
+    }
+
+    .srv-acc-hd {
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .srv-acc-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .srv-n {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+    }
+
+    .srv-nm {
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+
+    .srv-plus {
+      font-size: 1.3rem;
+      color: var(--gold);
+      transition: transform 0.35s var(--ease);
+      line-height: 1;
+    }
+
+    .srv-acc-card.open .srv-plus {
+      transform: rotate(45deg);
+    }
+
+    .srv-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease);
+    }
+
+    .srv-acc-card.open .srv-acc-body {
+      max-height: 500px;
+    }
+
+    .srv-acc-inner {
+      padding: 0 1.6rem 1.6rem;
+    }
+
+    .srv-acc-desc {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--off);
+      margin-bottom: 1rem;
+    }
+
+    /* INLINE IMAGE REVEAL (Solves the missing image on mobile!) */
+    .srv-mobile-img {
+      display: none;
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 0.5rem;
+    }
+
+    /* DESKTOP STICKY IMAGE PANEL */
+    .srv-sticky-col {
+      position: sticky;
+      top: 100px;
+      height: 520px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    #desktopSrvImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s var(--ease), transform 0.6s var(--ease);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       ABOUT / MANIFESTO & 2x2 METRICS
+       ══════════════════════════════════════════════════════════════════ */
+    #about {
+      padding: 6rem 5%;
+      background: radial-gradient(ellipse at 50% 10%, #16462f 0%, #0c261a 50%, #071910 100%);
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      text-align: center;
+    }
+
+    .about-manifesto-heading {
+      font-family: var(--font-disp);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--cream);
+      max-width: 900px;
+      margin: 0 auto 1.4rem;
+    }
+
+    .about-narrative {
+      font-size: clamp(0.95rem, 1.35vw, 1.18rem);
+      color: rgba(237, 231, 218, 0.85);
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    /* METRICS STRIP / GRID */
+    .metrics-container {
+      max-width: 960px;
+      margin: 0 auto 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .metric-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(192, 151, 59, 0.22);
+      border-radius: 12px;
+      padding: 1.4rem 1rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: clamp(2.2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .stat-num span {
+      color: var(--gold-2);
+      font-size: 0.65em;
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-2);
+      margin-top: 0.5rem;
+    }
+
+    .metric-detail {
+      font-size: 0.72rem;
+      color: var(--off);
+      margin-top: 0.2rem;
+    }
+
+    .manifesto-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 2.4rem;
+      border-radius: 100px;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s var(--ease);
+    }
+
+    .manifesto-btn:hover {
+      background: var(--gold-2);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 38px rgba(192, 151, 59, 0.45);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CLIENTELE MARQUEE
+       ══════════════════════════════════════════════════════════════════ */
+    #clients {
+      padding: 4.5rem 0;
+      background: var(--ink);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .clients-head {
+      padding: 0 5% 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .clients-track {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0 5%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .clients-track::-webkit-scrollbar { display: none; }
+
+    .client-card {
+      flex: 0 0 170px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+
+    .client-card:hover {
+      border-color: var(--gold);
+    }
+
+    .client-logo {
+      height: 36px;
+      width: auto;
+      max-width: 110px;
+      object-fit: contain;
+      filter: brightness(0.9) contrast(1.1);
+    }
+
+    .client-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .client-cat {
+      font-size: 0.68rem;
+      color: var(--off);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       CONTACT SECTION
+       ══════════════════════════════════════════════════════════════════ */
+    #contact {
+      padding: 5.5rem 5%;
+      background: var(--bg);
+    }
+
+    .contact-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .contact-head h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+
+    .c-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .c-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-size: 16px; /* Prevents auto-zoom on iOS Safari! */
+      color: var(--cream);
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    .c-input:focus {
+      border-color: var(--gold);
+      background: rgba(192, 151, 59, 0.05);
+    }
+
+    .c-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .submit-btn {
+      align-self: flex-start;
+      background: var(--gold);
+      color: #000;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 8px 24px rgba(192, 151, 59, 0.3);
+    }
+
+    .submit-btn:hover {
+      background: var(--gold-2);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--off);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS (OPTIMIZED FOR PHONE VIEW)
+       ══════════════════════════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      /* 1. Header */
+      #nav {
+        padding: 1rem 5%;
+      }
+      .nav-logo-name {
+        font-size: 1.08rem;
+      }
+
+      /* 2. HERO: FULL SCREEN HEIGHT ON MOBILE */
+      #hero.hero-cinematic {
+        height: 100vh !important;
+        height: 100svh !important;
+        height: 100dvh !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        padding-top: 0;
+      }
+
+      /* ELIMINATE SCROLL TO EXPLORE ON MOBILE AS REQUESTED */
+      .hero-strip {
+        display: none !important;
+      }
+
+      .hero-content {
+        padding: 0 6% clamp(2.2rem, 7vh, 3.8rem);
+      }
+
+      .hero-name {
+        font-size: clamp(2.8rem, 12vw, 4.2rem);
+        line-height: 0.95;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-lead {
+        font-size: 0.96rem;
+        line-height: 1.45;
+        margin-bottom: 1.5rem;
+      }
+
+      /* 3. Portfolio Grid: Switches to Flagship Hero + Bento Duos */
+      .portfolio-wrapper {
+        padding: 1.2rem 4% 4rem;
+      }
+      .portfolio-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      /* Flagship Hero Cards */
+      .col-span-8, .col-span-12 {
+        height: auto;
+        aspect-ratio: 4 / 5;
+      }
+
+      /* Bento Duos: Grid of 2 columns */
+      .bento-duo-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .bento-duo-row .project-card {
+        height: auto;
+        aspect-ratio: 1 / 1.18;
+      }
+      .bento-duo-row .card-title {
+        font-size: 1rem;
+      }
+      .bento-duo-row .card-desc {
+        display: none; /* Keeps bento cards clean on small screens */
+      }
+
+      /* Swiper on Mobile */
+      .swiper-row-section {
+        margin: 0.4rem 0;
+        padding: 1rem 0 1rem 12px;
+      }
+      .swiper-card {
+        flex: 0 0 74%; /* 26% peek for visual swipe affordance */
+        height: 200px;
+      }
+
+      /* 4. Services: Hide Desktop Sticky Column & Reveal INLINE IMAGERY */
+      .srv-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .srv-sticky-col {
+        display: none;
+      }
+      .srv-mobile-img {
+        display: block; /* REVEALS IMAGERY INLINE ON MOBILE! */
+      }
+      .srv-acc-card.open .srv-acc-body {
+        max-height: 450px;
+      }
+
+      /* 5. Metrics 2x2 on Mobile */
+      .metrics-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .metric-card {
+        padding: 1.1rem 0.8rem;
+      }
+      .stat-num {
+        font-size: 2.2rem;
+      }
+
+      /* 6. Form Fields */
+      .fg-row {
+        grid-template-columns: 1fr;
+      }
+      .submit-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* 7. Footer */
+      footer {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: clamp(2.6rem, 11vw, 3.4rem);
+      }
+      .hero-foot-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-cta-btn {
+        justify-content: center;
+      }
+      .hero-cta-link {
+        justify-content: center;
+      }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       FULLSCREEN LIGHTBOX MODAL
+       ══════════════════════════════════════════════════════════════════ */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+    }
+
+    .lb-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lb-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold-2);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .lb-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .lb-img-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+
+    .lb-img-wrap img {
+      max-width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .lb-meta {
+      background: rgba(18, 18, 24, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+    }
+
+    .lb-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .lb-caption {
+      font-size: 0.82rem;
+      color: var(--off);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PERSISTENT NAVIGATION -->
+  <header id="nav">
+    <a href="#" class="nav-logo">
+      <img src="/assets/samit-gugle-logo.png" alt="Samit Gugle Logo" class="nav-logo-img" />
+      <span class="nav-logo-name">Samit Gugle<span class="nav-dot">.</span></span>
+    </a>
+    <div class="nav-right-actions">
+      <a href="#contact" class="nav-cta">Start a Project ↗</a>
+      <button id="burger" aria-label="Toggle Menu" onclick="toggleMenu()">
+        <div class="bun top"></div>
+        <div class="bun bot"></div>
+      </button>
+    </div>
+  </header>
+
+  <!-- FULLSCREEN OVERLAY MENU -->
+  <div id="overlay">
+    <div class="ov-links">
+      <a href="#works" class="ov-link" onclick="toggleMenu()">
+        <span>Our Work</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#services" class="ov-link" onclick="toggleMenu()">
+        <span>Services</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#about" class="ov-link" onclick="toggleMenu()">
+        <span>About</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#clients" class="ov-link" onclick="toggleMenu()">
+        <span>Clientele</span>
+        <span class="arrow">↗</span>
+      </a>
+      <a href="#contact" class="ov-link" onclick="toggleMenu()">
+        <span>Contact</span>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. HERO SECTION — FULL 100VH ON MOBILE WITH CINEMATIC LIVE VIDEO -->
+  <section id="hero" class="hero-cinematic">
+    <!-- SHOWREEL VIDEO BACKDROP -->
+    <div class="hero-video-wrap">
+      <video
+        id="heroBannerVideo"
+        class="hero-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="/assets/jessie-work/01-espn.jpg"
+      >
+        <source src="https://res.cloudinary.com/demo/video/upload/c_scale,w_1920/walking.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-scrim"></div>
+      <div class="hero-noise"></div>
+    </div>
+
+    <!-- MAIN HERO CONTENT (ANCHORED BEAUTIFULLY AT BOTTOM) -->
+    <div class="hero-content">
+      <div class="hero-meta">
+        <span>Direction &amp; Brand Architecture</span>
+        <span class="hero-pill-sep">·</span>
+        <span class="hero-location">Mumbai · Global</span>
+      </div>
+
+      <h1 class="hero-name">Samit Gugle</h1>
+      <p class="hero-lead">
+        Strategic Public Relations <em>&amp;</em> Narrative Direction for brands that shape culture.
+      </p>
+
+      <div class="hero-foot-row">
+        <a href="#works" class="hero-cta-btn">Selected Works ↓</a>
+        <a href="#contact" class="hero-cta-link">Start a Project ↗</a>
+      </div>
+    </div>
+
+    <!-- EDITORIAL BOTTOM STRIP (VISIBLE ON DESKTOP, HIDDEN ON MOBILE) -->
+    <div class="hero-strip">
+      <span class="hs-label">Scroll to Explore ↓</span>
+      <p class="hs-desc">Narrative-led brand elevation for brands that demand more.</p>
+      <span class="hs-year">© 2026</span>
+    </div>
+  </section>
+
+  <!-- 3. PORTFOLIO & WORK HEADER -->
+  <main id="works">
+    <div class="work-head-container">
+      <div class="work-head-top">
+        <div class="work-title-wrap">
+          <span class="eyebrow">Portfolio &amp; Retrospect</span>
+          <h2>SELECTED <em>Work</em></h2>
+          <p class="work-subtitle">
+            A creative lead directing and shaping brand worlds as they emerge, evolve, or transform.
+          </p>
+        </div>
+        <a href="#contact" class="hero-cta-btn" style="padding: 0.75rem 1.6rem; font-size: 0.74rem;">
+          Start a Project ↗
+        </a>
+      </div>
+
+      <!-- HORIZONTAL SCROLLING CATEGORY TABS -->
+      <div class="work-tabs-bar">
+        <button class="work-tab-btn active" onclick="filterCategory('all', this)">All Works (37)</button>
+        <button class="work-tab-btn" onclick="filterCategory('pr', this)">PR Campaigns</button>
+        <button class="work-tab-btn" onclick="filterCategory('brand', this)">Brand Identity</button>
+        <button class="work-tab-btn" onclick="filterCategory('editorial', this)">Fashion &amp; Editorial</button>
+        <button class="work-tab-btn" onclick="filterCategory('spatial', this)">Spatial &amp; Digital</button>
+        <button class="work-tab-btn avail-tab" onclick="filterCategory('avail', this)">
+          <span class="avail-dot"></span>Available Q1/Q2
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. OPTIMIZED PORTFOLIO GRID USING AUTHENTIC LOCAL ASSETS -->
+    <div class="portfolio-wrapper">
+      <div class="portfolio-grid">
+
+        <!-- 1. FLAGSHIP HERO CARD: ESPN US Open -->
+        <article class="project-card col-span-8" onclick="openLightbox('/assets/jessie-work/01-espn.jpg', 'ESPN — US Open 50th Anniversary', 'Court Artwork & Cultural Commercial Direction')">
+          <img src="/assets/jessie-work/01-espn.jpg" alt="ESPN Artwork" loading="lazy" />
+          <div class="card-overlay">
+            <span class="card-badge">Commercial Direction</span>
+            <div class="card-title">
+              <span>ESPN <em>US Open</em></span>
+              <span class="card-arrow">↗</span>
+            </div>
+            <p class="card-desc">US Open 50th Anniversary — Court Artwork &amp; Cultural Direction</p>
+          </div>
+        </article>
+
+        <!-- 2. CARD: Grubhub Mandala Installation -->
+        <article class="project-card col-span-4" onclick="openLightbox('/assets/jessie-work/02-grubhub.jpg', 'GRUBHUB Mandala', 'Surreal Silverware Mandala Art Installation')">
+          <img src="/assets/jessie-work/02-grubhub.jpg" alt="Grubhub Mandala" loading="lazy" />
+          <div class="card-overlay">
+            <span class="card-badge">Installation Art</span>
+            <div class="card-title">
+              <span>GRUBHUB</span>
+              <span class="card-arrow">↗</span>
+            </div>
+            <p class="card-desc">Surreal Silverware Mandala Art Installation</p>
+          </div>
+        </article>
+
+        <!-- 3 & 4. ASYMMETRIC BENTO DUO: MTV & Specialized -->
+        <div class="bento-duo-row" style="grid-column: span 12;">
+          <article class="project-card" onclick="openLightbox('/assets/jessie-work/03-mtv.jpg', 'MTV — Miley Cyrus Portrait', 'Mixed Media Ephemera & Guitar Strings')">
+            <img src="/assets/jessie-work/03-mtv.jpg" alt="MTV Portrait" loading="lazy" />
+            <div class="card-overlay">
+              <span class="card-badge">Celebrity Portrait</span>
+              <div class="card-title">
+                <span>MTV <em>Miley Cyrus</em></span>
+                <span class="card-arrow">↗</span>
+              </div>
+              <p class="card-desc">Mixed Media Sculpted Portrait</p>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="openLightbox('/assets/jessie-work/04-specialized.jpg', 'SPECIALIZED', 'Mountain Valley Large-Scale Canvas Portrait')">
+            <img src="/assets/jessie-work/04-specialized.jpg" alt="Specialized Canvas" loading="lazy" />
+            <div class="card-overlay">
+              <span class="card-badge">Large Scale Art</span>
+              <div class="card-title">
+                <span>SPECIALIZED</span>
+                <span class="card-arrow">↗</span>
+              </div>
+              <p class="card-desc">Large-Scale Mountain Valley Portrait</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- 5. OOH TAKE-OVERS SWIPER WITH PEEK AFFORDANCE -->
+        <div class="swiper-row-section">
+          <div class="swiper-head">
+            <span class="swiper-heading">Sculptural &amp; Experimental Releases</span>
+            <span class="swiper-hint">Swipe →</span>
+          </div>
+          <div class="swiper-track">
+            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/07-butter-sneaker.jpg', 'AIR FORCE 1 Butter Sneaker', 'Sculpted Pure Butter Sneaker for Bleacher Report')">
+              <img src="/assets/jessie-work/07-butter-sneaker.jpg" alt="Butter Sneaker" loading="lazy" />
+              <div class="card-overlay">
+                <span class="card-badge">Sculptural Art</span>
+                <div class="card-title">AIR FORCE 1 <em>Butter</em></div>
+              </div>
+            </div>
+
+            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/08-making-it.jpg', 'NBC Making It', 'Architectural Translucent Spatial Installation')">
+              <img src="/assets/jessie-work/08-making-it.jpg" alt="Making It" loading="lazy" />
+              <div class="card-overlay">
+                <span class="card-badge">Spatial Installation</span>
+                <div class="card-title">NBC Making It</div>
+              </div>
+            </div>
+
+            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/09-american-express.jpg', 'American Express Platinum', 'Commercial Art & VIP Direction')">
+              <img src="/assets/jessie-work/09-american-express.jpg" alt="American Express" loading="lazy" />
+              <div class="card-overlay">
+                <span class="card-badge">VIP Direction</span>
+                <div class="card-title">American Express</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. KINETIC TICKER RIBBON -->
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <span class="marquee-item">VOGUE &amp; GQ PRESS <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">EXECUTIVE <em>Positioning</em> <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">STRATEGIC <em>Brand Worlds</em> <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">MUMBAI &amp; <em>Worldwide</em> <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">VOGUE &amp; GQ PRESS <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">EXECUTIVE <em>Positioning</em> <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">STRATEGIC <em>Brand Worlds</em> <span class="marquee-arrow">✦</span></span>
+            <span class="marquee-item">MUMBAI &amp; <em>Worldwide</em> <span class="marquee-arrow">✦</span></span>
+          </div>
+        </div>
+
+        <!-- 7. FLAGSHIP CARD: Walmart Curated Object Installation -->
+        <article class="project-card col-span-8" onclick="openLightbox('/assets/jessie-work/05-walmart.jpg', 'WALMART — Experiential Object Wall', 'Chromatically Curated Object Wall Art Installation')">
+          <img src="/assets/jessie-work/05-walmart.jpg" alt="Walmart Installation" loading="lazy" />
+          <div class="card-overlay">
+            <span class="card-badge">Experiential Architecture</span>
+            <div class="card-title">
+              <span>WALMART <em>Chromatic Wall</em></span>
+              <span class="card-arrow">↗</span>
+            </div>
+            <p class="card-desc">Chromatically Curated Object Wall Art Installation</p>
+          </div>
+        </article>
+
+        <!-- 8. CARD: Marvel x M&M -->
+        <article class="project-card col-span-4" onclick="openLightbox('/assets/jessie-work/06-marvel.jpg', 'MARVEL x M&amp;M', 'Guardians of the Galaxy Edible Art Mosaic')">
+          <img src="/assets/jessie-work/06-marvel.jpg" alt="Marvel Artwork" loading="lazy" />
+          <div class="card-overlay">
+            <span class="card-badge">Edible Art Mosaic</span>
+            <div class="card-title">
+              <span>MARVEL <em>x M&amp;M</em></span>
+              <span class="card-arrow">↗</span>
+            </div>
+            <p class="card-desc">Guardians of the Galaxy Edible Art Mosaic</p>
+          </div>
+        </article>
+
+        <!-- 9 & 10. BENTO DUO: Joe Fresh & GAP -->
+        <div class="bento-duo-row" style="grid-column: span 12;">
+          <article class="project-card" onclick="openLightbox('/assets/jessie-work/10-joe-fresh.jpg', 'JOE FRESH', 'Fashion Campaign Direction & Creative Strategy')">
+            <img src="/assets/jessie-work/10-joe-fresh.jpg" alt="Joe Fresh" loading="lazy" />
+            <div class="card-overlay">
+              <span class="card-badge">Fashion Editorial</span>
+              <div class="card-title">
+                <span>JOE FRESH</span>
+                <span class="card-arrow">↗</span>
+              </div>
+              <p class="card-desc">Fashion Campaign Direction</p>
+            </div>
+          </article>
+
+          <article class="project-card" onclick="openLightbox('/assets/jessie-work/11-gap.jpg', 'GAP Heritage', 'Heritage Apparel & Global Campaign Direction')">
+            <img src="/assets/jessie-work/11-gap.jpg" alt="GAP" loading="lazy" />
+            <div class="card-overlay">
+              <span class="card-badge">Apparel Direction</span>
+              <div class="card-title">
+                <span>GAP <em>Heritage</em></span>
+                <span class="card-arrow">↗</span>
+              </div>
+              <p class="card-desc">Heritage Apparel &amp; Cultural Rollout</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- 11. FINAL FLAGSHIP: Dramamine Commercial Food Art -->
+        <article class="project-card col-span-12" onclick="openLightbox('/assets/jessie-work/12-dramamine.jpg', 'DRAMAMINE', 'Commercial Food Art Campaign & Brand Retrospect')">
+          <img src="/assets/jessie-work/12-dramamine.jpg" alt="Dramamine" loading="lazy" />
+          <div class="card-overlay">
+            <span class="card-badge">Commercial Food Art</span>
+            <div class="card-title">
+              <span>DRAMAMINE <em>Campaign</em></span>
+              <span class="card-arrow">↗</span>
+            </div>
+            <p class="card-desc">Commercial Food Art Campaign &amp; Cultural Direction</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- 5. SERVICES SECTION (WITH INLINE IMAGE REVEAL ON MOBILE!) -->
+  <section id="services">
+    <div class="srv-layout">
+      <!-- ACCORDION COLUMN -->
+      <div class="srv-list-col">
+        <span class="eyebrow">What We Do</span>
+        <h2 style="font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -0.04em; color: var(--cream); margin-bottom: 1.5rem;">
+          Capabilities <em>&amp; Direction</em>
+        </h2>
+
+        <!-- Service 01 -->
+        <div class="srv-acc-card open" onclick="selectService(0, '/assets/services/01-social-media.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">01</span>
+              <span class="srv-nm">Social Media Marketing</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                Content strategies, community management, and growth campaigns built for today's platforms. We make brands impossible to scroll past.
+              </p>
+              <!-- INLINE IMAGE FOR MOBILE -->
+              <div class="srv-mobile-img">
+                <img src="/assets/services/01-social-media.jpg" alt="Social Media Marketing" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 02 -->
+        <div class="srv-acc-card" onclick="selectService(1, '/assets/services/02-seo.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">02</span>
+              <span class="srv-nm">Search Engine Optimisation</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                Data-driven SEO that puts your brand in front of the right audience at the right moment. Organic growth that compounds over time.
+              </p>
+              <div class="srv-mobile-img">
+                <img src="/assets/services/02-seo.jpg" alt="SEO" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 03 -->
+        <div class="srv-acc-card" onclick="selectService(2, '/assets/services/03-website-dev.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">03</span>
+              <span class="srv-nm">Website Development</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                Premium, conversion-focused websites that look as good as they perform. Every pixel purposeful.
+              </p>
+              <div class="srv-mobile-img">
+                <img src="/assets/services/03-website-dev.jpg" alt="Website Dev" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 04 -->
+        <div class="srv-acc-card" onclick="selectService(3, '/assets/services/04-public-relations.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">04</span>
+              <span class="srv-nm">Public Relations</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                Media placements, press releases, and influencer partnerships that build lasting credibility in the right rooms.
+              </p>
+              <div class="srv-mobile-img">
+                <img src="/assets/services/04-public-relations.jpg" alt="Public Relations" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 05 -->
+        <div class="srv-acc-card" onclick="selectService(4, '/assets/services/05-brand-building.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">05</span>
+              <span class="srv-nm">Brand Building</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                From positioning to identity — we build brands that people remember, trust, and talk about.
+              </p>
+              <div class="srv-mobile-img">
+                <img src="/assets/services/05-brand-building.jpg" alt="Brand Building" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 06 -->
+        <div class="srv-acc-card" onclick="selectService(5, '/assets/services/06-designing.jpg', this)">
+          <div class="srv-acc-hd">
+            <div class="srv-acc-title-wrap">
+              <span class="srv-n">06</span>
+              <span class="srv-nm">Designing</span>
+            </div>
+            <span class="srv-plus">+</span>
+          </div>
+          <div class="srv-acc-body">
+            <div class="srv-acc-inner">
+              <p class="srv-acc-desc">
+                Visual work spanning print, digital, packaging, and motion. Every brand deserves to look exceptional.
+              </p>
+              <div class="srv-mobile-img">
+                <img src="/assets/services/06-designing.jpg" alt="Designing" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP STICKY IMAGE PANEL -->
+      <div class="srv-sticky-col">
+        <img id="desktopSrvImg" src="/assets/services/01-social-media.jpg" alt="Active Service" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. ABOUT / MANIFESTO & 2x2 BALANCED METRICS -->
+  <section id="about">
+    <span class="eyebrow" style="color: var(--gold-2);">Studio Practice &amp; Manifesto</span>
+    <h2 class="about-manifesto-heading">
+      We are a <em>PR &amp; digital studio</em> built for brands that refuse to be ordinary.
+    </h2>
+    <p class="about-narrative">
+      A creative practice directing <em>&amp;</em> shaping brand worlds as they emerge, evolve, or transform. Combining razor-sharp cultural strategy with beautiful execution — elevating how the world perceives you.
+    </p>
+
+    <!-- METRICS 2x2 ON MOBILE, 4-COL ON DESKTOP -->
+    <div class="metrics-container">
+      <div class="metric-card">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="metric-label">Brands Elevated</div>
+        <div class="metric-detail">Culture, fashion &amp; luxury</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="stat-num">6<span>+</span></div>
+        <div class="metric-label">Years of Direction</div>
+        <div class="metric-detail">Narrative architecture</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="stat-num">200<span>+</span></div>
+        <div class="metric-label">Tier-1 Placements</div>
+        <div class="metric-detail">Vogue, GQ, Forbes &amp; press</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="stat-num" style="color: #10b981;">● Open</div>
+        <div class="metric-label">Select Engagements</div>
+        <div class="metric-detail">Global Direction 2026</div>
+      </div>
+    </div>
+
+    <a href="#contact" class="manifesto-btn">the Studio &mdash; Start a Project ↗</a>
+  </section>
+
+  <!-- 7. CLIENTELE USING AUTHENTIC LOCAL LOGOS -->
+  <section id="clients">
+    <div class="clients-head">
+      <div>
+        <span class="eyebrow">Trusted Partnerships</span>
+        <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; color: var(--cream);">
+          SELECT <em>the</em> Clientele
+        </h2>
+      </div>
+      <a href="#contact" class="nav-cta" style="padding: 0.5rem 1.2rem;">Elevate Your Brand ↗</a>
+    </div>
+
+    <div class="clients-track">
+      <div class="client-card" onclick="openLightbox('/assets/logos/walmart.png', 'Walmart', 'Global Retail & Enterprise Communications')">
+        <img src="/assets/logos/walmart.png" alt="Walmart" class="client-logo" />
+        <span class="client-name">Walmart</span>
+        <span class="client-cat">Enterprise Retail</span>
+      </div>
+
+      <div class="client-card" onclick="openLightbox('/assets/logos/sony-music.png', 'Sony Music', 'Global Music & Entertainment Storytelling')">
+        <img src="/assets/logos/sony-music.png" alt="Sony Music" class="client-logo" />
+        <span class="client-name">Sony Music</span>
+        <span class="client-cat">Entertainment</span>
+      </div>
+
+      <div class="client-card" onclick="openLightbox('/assets/logos/gap.png', 'GAP', 'Heritage Apparel & Global Fashion Campaign Direction')">
+        <img src="/assets/logos/gap.png" alt="GAP" class="client-logo" />
+        <span class="client-name">GAP</span>
+        <span class="client-cat">Apparel &amp; Fashion</span>
+      </div>
+
+      <div class="client-card" onclick="openLightbox('/assets/logos/espn.png', 'ESPN', 'Sports Media Broadcast & Digital Cultural Takeover')">
+        <img src="/assets/logos/espn.png" alt="ESPN" class="client-logo" />
+        <span class="client-name">ESPN</span>
+        <span class="client-cat">Sports Media</span>
+      </div>
+
+      <div class="client-card" onclick="openLightbox('/assets/logos/american-express.png', 'American Express', 'Global Financial Services & Premium Lifestyle')">
+        <img src="/assets/logos/american-express.png" alt="AMEX" class="client-logo" />
+        <span class="client-name">American Express</span>
+        <span class="client-cat">Finance</span>
+      </div>
+
+      <div class="client-card" onclick="openLightbox('/assets/logos/mtv.png', 'MTV', 'Global Youth Culture, Music & Television Direction')">
+        <img src="/assets/logos/mtv.png" alt="MTV" class="client-logo" />
+        <span class="client-name">MTV</span>
+        <span class="client-cat">Youth Culture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CONTACT SECTION -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-head">
+        <span class="eyebrow">Book a Call</span>
+        <h2>
+          Let&apos;s make<br />
+          <em>something</em><br />
+          the world sees.
+        </h2>
+      </div>
+
+      <form class="c-form" onsubmit="event.preventDefault(); alert('Inquiry sent successfully!');">
+        <div class="fg-row">
+          <input type="text" class="c-input" placeholder="Full Name *" required />
+          <input type="email" class="c-input" placeholder="Email *" required />
+        </div>
+        <div class="fg-row">
+          <input type="text" class="c-input" placeholder="Company *" required />
+          <input type="url" class="c-input" placeholder="Website" />
+        </div>
+        <textarea class="c-input c-textarea" placeholder="Your challenge or project objective *" required></textarea>
+        <button type="submit" class="submit-btn">Send Inquiry ↗</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 9. FOOTER -->
+  <footer>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="/assets/samit-gugle-logo.png" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" />
+      <span>Samit Gugle PR Agency · Mumbai · Global · © 2026</span>
+    </div>
+    <a href="#hero" style="color: var(--gold); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em;">Back to top ↑</a>
+  </footer>
+
+  <!-- FULLSCREEN LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <div class="lb-top">
+      <span class="lb-badge">Selected Artwork</span>
+      <button class="lb-close" onclick="closeLightbox()">&times;</button>
+    </div>
+    <div class="lb-img-wrap">
+      <img id="lbImg" src="" alt="Project Artwork" onclick="event.stopPropagation()" />
+    </div>
+    <div class="lb-meta" onclick="event.stopPropagation()">
+      <h3 class="lb-title" id="lbTitle">Title</h3>
+      <p class="lb-caption" id="lbCaption">Caption</p>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function toggleMenu() {
+      const burger = document.getElementById('burger');
+      const overlay = document.getElementById('overlay');
+      const isOpen = burger.classList.contains('open');
+      burger.classList.toggle('open', !isOpen);
+      overlay.classList.toggle('open', !isOpen);
+      document.body.style.overflow = !isOpen ? 'hidden' : '';
+    }
+
+    function selectService(index, imgSrc, card) {
+      document.querySelectorAll('.srv-acc-card').forEach(c => c.classList.remove('open'));
+      card.classList.add('open');
+      const desktopImg = document.getElementById('desktopSrvImg');
+      if (desktopImg) {
+        desktopImg.style.opacity = '0';
+        setTimeout(() => {
+          desktopImg.src = imgSrc;
+          desktopImg.style.opacity = '1';
+        }, 250);
+      }
+    }
+
+    function openLightbox(src, title, caption) {
+      document.getElementById('lbImg').src = src;
+      document.getElementById('lbTitle').textContent = title;
+      document.getElementById('lbCaption').textContent = caption;
+      document.getElementById('lightboxModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.work-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (cat === 'avail') {
+        const contact = document.getElementById('contact');
+        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

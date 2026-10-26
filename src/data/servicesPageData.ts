@@ -75,9 +75,8 @@ export const GALLERY_PROJECTS: GalleryProjectItem[] = [
   },
   {
     id: "butter-sneaker",
-    title: "BUTTER AIR FORCE 1",
-    displayTitle: "", // Clean in screenshot without center overlay
-    hoverTitle: "BUTTER AIR FORCE 1",
+    title: "AIR FORCE 1",
+    displayTitle: "AIR FORCE 1",
     categories: ["FOOD ART"],
     src: "/assets/jessie-work/07-butter-sneaker.jpg",
     caption:

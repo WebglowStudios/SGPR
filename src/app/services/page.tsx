@@ -72,20 +72,28 @@ export default function ServicesPage() {
 
   return (
     <div className="jb-gallery-wrap">
-      {/* ── Custom Cursor ── */}
+      {/* ── Outer Ring + Dot Custom Cursor (Exact Homepage Gold Physics) ── */}
       <CustomCursor />
 
       {/* ── Persistent Agency Header (Unmodified) ── */}
       <Navbar />
 
       <main>
-        {/* ── HERO HEADER: Selected Work ── */}
+        {/* ── HERO HEADER: Exact Site Typography in Jesse Bearden Layout ── */}
         <section className="jb-header">
-          <h1 className="jb-title">Selected Work</h1>
+          <span
+            className="eyebrow reveal"
+            style={{ display: "inline-block", marginBottom: "0.85rem" }}
+          >
+            Capabilities &amp; Direction
+          </span>
+          <h1 className="jb-title reveal">
+            SELECTED <em>Work</em>
+          </h1>
 
           {/* ── CATEGORY TABS ROW ── */}
           <nav
-            className="jb-tabs-row"
+            className="jb-tabs-row reveal"
             aria-label="Filter selected work by category"
           >
             {WORK_CATEGORIES.map((cat) => {
@@ -140,22 +148,14 @@ export default function ServicesPage() {
 
               {/* Bold All-Caps White Title in Center of Artwork */}
               <div className="jb-card-overlay">
-                {item.displayTitle ? (
-                  <h2 className="jb-card-title">{item.displayTitle}</h2>
-                ) : (
-                  item.hoverTitle && (
-                    <span className="jb-card-hover-title">
-                      {item.hoverTitle}
-                    </span>
-                  )
-                )}
+                <h2 className="jb-card-title">{item.displayTitle}</h2>
               </div>
             </div>
           ))}
         </section>
       </main>
 
-      {/* ── Persistent Agency Footer ── */}
+      {/* ── Persistent Agency Footer (Exact Homepage Styling) ── */}
       <Footer />
 
       {/* ── Fullscreen Art Lightbox Modal ── */}
