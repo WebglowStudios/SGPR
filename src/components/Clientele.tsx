@@ -28,6 +28,13 @@ export default function Clientele({ onOpenLightbox }: ClienteleProps) {
             SELECT <span className="cursive-the">the</span> <em>Clientele</em>
           </h2>
         </div>
+        <a
+          href="#contact"
+          onClick={handleElevateClick}
+          className="clientele-mobile-cta nav-cta"
+        >
+          Elevate Your Brand ↗
+        </a>
         <p className="clientele-desc reveal" style={{ "--d": ".2s" } as React.CSSProperties}>
           Strategic partnerships across culture, luxury fashion, fine jewellery,
           beauty, and vanguard technology elevated through bespoke narrative
@@ -66,10 +73,10 @@ export default function Clientele({ onOpenLightbox }: ClienteleProps) {
         </div>
       </div>
 
-      {/* Bottom Label & Brand Strip */}
+      {/* Bottom Label & Brand Strip (Desktop only) */}
       <div className="clientele-bottom-strip">
         <span className="eyebrow" style={{ marginBottom: 0 }}>
-          50+ Brands Elevated · India &amp; Worldwide
+          50+ Brands Elevated · Worldwide
         </span>
         <a
           href="#contact"

@@ -15,6 +15,7 @@ import Clientele from "@/components/Clientele";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import LightboxModal from "@/components/LightboxModal";
+import MobilePortfolioGrid from "@/components/MobilePortfolioGrid";
 
 import {
   CAROUSEL_ROWS,
@@ -140,6 +141,25 @@ export default function Home() {
       items.push({ src: c.src, title: c.name, caption: c.caption });
     });
 
+    // Mobile curated portfolio items
+    const mobileItems: LightboxItem[] = [
+      { src: "/assets/jessie-work/01-espn.jpg", title: "ESPN — US Open 50th Anniversary", caption: "Court Artwork & Cultural Commercial Direction" },
+      { src: "/assets/jessie-work/02-grubhub.jpg", title: "GRUBHUB Mandala", caption: "Surreal Silverware Mandala Art Installation" },
+      { src: "/assets/jessie-work/03-mtv.jpg", title: "MTV — Miley Cyrus Portrait", caption: "Mixed Media Ephemera & Guitar Strings" },
+      { src: "/assets/jessie-work/04-specialized.jpg", title: "SPECIALIZED", caption: "Mountain Valley Large-Scale Canvas Portrait" },
+      { src: "/assets/jessie-work/05-walmart.jpg", title: "WALMART — Experiential Object Wall", caption: "Chromatically Curated Object Wall Art Installation" },
+      { src: "/assets/jessie-work/06-marvel.jpg", title: "MARVEL x M&M", caption: "Guardians of the Galaxy Edible Art Mosaic" },
+      { src: "/assets/jessie-work/07-butter-sneaker.jpg", title: "AIR FORCE 1 Butter Sneaker", caption: "Sculpted Pure Butter Sneaker for Bleacher Report" },
+      { src: "/assets/jessie-work/08-making-it.jpg", title: "NBC Making It", caption: "Architectural Translucent Spatial Installation" },
+      { src: "/assets/jessie-work/09-american-express.jpg", title: "American Express Platinum", caption: "Commercial Art & VIP Direction" },
+      { src: "/assets/jessie-work/10-joe-fresh.jpg", title: "JOE FRESH", caption: "Fashion Campaign Direction & Creative Strategy" },
+      { src: "/assets/jessie-work/11-gap.jpg", title: "GAP Heritage", caption: "Heritage Apparel & Global Campaign Direction" },
+      { src: "/assets/jessie-work/12-dramamine.jpg", title: "DRAMAMINE", caption: "Commercial Food Art Campaign & Brand Retrospect" },
+    ];
+    mobileItems.forEach((mi) => {
+      if (!items.some((it) => it.src === mi.src)) items.push(mi);
+    });
+
     return items;
   }, []);
 
@@ -181,55 +201,66 @@ export default function Home() {
           onFilterChange={setActiveFilter}
         />
 
-        {/* ── ROWS 1 TO 6 BESPOKE CAROUSELS ── */}
-        <CarouselRow
-          data={CAROUSEL_ROWS[0]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
-        <CarouselRow
-          data={CAROUSEL_ROWS[1]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
-        <CarouselRow
-          data={CAROUSEL_ROWS[2]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
-        <CarouselRow
-          data={CAROUSEL_ROWS[3]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
-        <CarouselRow
-          data={CAROUSEL_ROWS[4]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
-        <CarouselRow
-          data={CAROUSEL_ROWS[5]}
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
+        {/* ── DESKTOP PORTFOLIO VIEW (PC VIEW >= 901px: 100% UNTOUCHED) ── */}
+        <div className="desktop-portfolio-view">
+          {/* ── ROWS 1 TO 6 BESPOKE CAROUSELS ── */}
+          <CarouselRow
+            data={CAROUSEL_ROWS[0]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+          <CarouselRow
+            data={CAROUSEL_ROWS[1]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+          <CarouselRow
+            data={CAROUSEL_ROWS[2]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+          <CarouselRow
+            data={CAROUSEL_ROWS[3]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+          <CarouselRow
+            data={CAROUSEL_ROWS[4]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+          <CarouselRow
+            data={CAROUSEL_ROWS[5]}
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
 
-        {/* ── MARQUEE RIBBON 1 ── */}
-        <MarqueeRibbon id="marquee-1" items={MARQUEE_ITEMS_1} />
+          {/* ── MARQUEE RIBBON 1 ── */}
+          <MarqueeRibbon id="marquee-1" items={MARQUEE_ITEMS_1} />
 
-        {/* ── FEATURE 3-COLUMN SHOWCASE ── */}
-        <FeatureGrid
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
+          {/* ── FEATURE 3-COLUMN SHOWCASE ── */}
+          <FeatureGrid
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
 
-        {/* ── MARQUEE RIBBON 2 (Reverse) ── */}
-        <MarqueeRibbon id="marquee-2" items={MARQUEE_ITEMS_2} reverse />
+          {/* ── MARQUEE RIBBON 2 (Reverse) ── */}
+          <MarqueeRibbon id="marquee-2" items={MARQUEE_ITEMS_2} reverse />
 
-        {/* ── CURATED MASONRY 3-COLUMN SHOWCASE ── */}
-        <MasonrySection
-          activeFilter={activeFilter}
-          onOpenLightbox={handleOpenLightbox}
-        />
+          {/* ── CURATED MASONRY 3-COLUMN SHOWCASE ── */}
+          <MasonrySection
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+        </div>
+
+        {/* ── MOBILE PORTFOLIO VIEW (MOBILE VIEW <= 900px from mobile-preview.html) ── */}
+        <div className="mobile-portfolio-view">
+          <MobilePortfolioGrid
+            activeFilter={activeFilter}
+            onOpenLightbox={handleOpenLightbox}
+          />
+        </div>
       </main>
 
       {/* ── SERVICES ACCORDION ── */}

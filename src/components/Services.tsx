@@ -5,70 +5,67 @@ import { SERVICES_LIST } from "@/data/agencyData";
 
 export default function Services() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [changing, setChanging] = useState(false);
-  const [displayedImg, setDisplayedImg] = useState(SERVICES_LIST[0].img);
 
   const handleServiceClick = (index: number) => {
-    if (index === activeIndex) return;
-
-    setActiveIndex(index);
-    setChanging(true);
-
-    setTimeout(() => {
-      setDisplayedImg(SERVICES_LIST[index].img);
-      setChanging(false);
-    }, 350);
+    setActiveIndex(index === activeIndex ? -1 : index);
   };
 
   return (
     <section id="services">
-      <div className="srv-split">
+      <div className="srv-layout">
         {/* Left: Accordion list */}
         <div className="srv-list-col">
           <span className="eyebrow reveal">What We Do</span>
+          <h2
+            className="srv-main-heading reveal"
+            style={{ "--d": ".1s" } as React.CSSProperties}
+          >
+            Capabilities <em>&amp; Direction</em>
+          </h2>
 
           {SERVICES_LIST.map((service, index) => {
-            const isActive = activeIndex === index;
+            const isOpen = activeIndex === index;
 
             return (
               <div
                 key={service.num}
-                className={`srv-acc-item ${isActive ? "active" : ""}`}
-                data-img={service.img}
+                className={`srv-acc-card ${isOpen ? "open" : ""}`}
+                onClick={() => handleServiceClick(index)}
               >
-                <button
-                  className="srv-hd"
-                  onClick={() => handleServiceClick(index)}
-                  aria-expanded={isActive}
-                >
-                  <span className="srv-n">{service.num}</span>
-                  <span className="srv-nm">{service.name}</span>
+                <div className="srv-acc-hd">
+                  <div className="srv-acc-title-wrap">
+                    <span className="srv-n">{service.num}</span>
+                    <span className="srv-nm">{service.name}</span>
+                  </div>
                   <span className="srv-plus">+</span>
-                </button>
-                <div
-                  className="srv-body"
-                  style={{
-                    maxHeight: isActive ? "200px" : "0",
-                  }}
-                >
-                  <p>{service.desc}</p>
+                </div>
+                <div className="srv-acc-body">
+                  <div className="srv-acc-inner">
+                    <p className="srv-acc-desc">{service.desc}</p>
+                    {/* INLINE IMAGE REVEAL ON MOBILE */}
+                    <div className="srv-mobile-img">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={service.img}
+                        alt={service.name}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Right: Sticky image preview panel */}
-        <div className="srv-img-col">
-          <div className="srv-img-frame">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              id="srv-img"
-              src={displayedImg}
-              alt={SERVICES_LIST[activeIndex].name}
-              className={changing ? "changing" : ""}
-            />
-          </div>
+        {/* Right: Sticky image preview panel (Desktop) */}
+        <div className="srv-sticky-col">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            id="desktopSrvImg"
+            src={activeIndex >= 0 ? SERVICES_LIST[activeIndex].img : SERVICES_LIST[0].img}
+            alt={activeIndex >= 0 ? SERVICES_LIST[activeIndex].name : SERVICES_LIST[0].name}
+          />
         </div>
       </div>
     </section>

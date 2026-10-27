@@ -12,7 +12,7 @@ export default function Hero() {
           loop
           muted
           playsInline
-          poster="https://static.wixstatic.com/media/99ea51_b806ac16c33141219557d5cddf0d16a1~mv2.png/v1/fit/w_1600,h_900,q_85,enc_avif,quality_auto/99ea51_b806ac16c33141219557d5cddf0d16a1~mv2.png"
+          poster="/assets/jessie-work/01-espn.jpg"
         >
           <source
             src="https://res.cloudinary.com/demo/video/upload/c_scale,w_1920/walking.mp4"
@@ -26,7 +26,7 @@ export default function Hero() {
       {/* Main Editorial Content */}
       <div className="hero-content">
         <div className="hero-meta reveal">
-          <span className="hero-pill">Direction &amp; Brand Architecture</span>
+          <span>Direction &amp; Brand Architecture</span>
         </div>
 
         <div className="hero-headline-wrap">
@@ -34,16 +34,16 @@ export default function Hero() {
             SAMIT GUGLE
           </h1>
           <p className="hero-lead reveal" style={{ "--d": ".2s" } as React.CSSProperties}>
-            Strategic Public Relations <span className="lead-amp">&amp;</span> Narrative Direction for brands that shape culture.
+            Strategic Public Relations <em>&amp;</em> Narrative Direction for brands that shape culture.
           </p>
         </div>
 
         <div className="hero-foot-row reveal" style={{ "--d": ".3s" } as React.CSSProperties}>
           <a href="#works" className="hero-cta-btn">
-            Selected Works <span className="arrow">↓</span>
+            Selected Works ↓
           </a>
           <a href="#contact" className="hero-cta-link">
-            Start a Project <span className="arrow">↗</span>
+            Start a Project ↗
           </a>
         </div>
       </div>

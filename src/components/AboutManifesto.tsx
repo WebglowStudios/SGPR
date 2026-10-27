@@ -59,8 +59,7 @@ export default function AboutManifesto() {
       <div className="about-container">
         {/* Top Eyebrow Strip */}
         <div className="about-top-bar reveal">
-          <span className="eyebrow">Studio Practice &amp; Manifesto</span>
-          <span className="about-loc-tag">Mumbai · London · Worldwide</span>
+          <span className="eyebrow" style={{ color: "var(--gold-2)" }}>Studio Practice &amp; Manifesto</span>
         </div>
 
         {/* Monumental Editorial Statement */}
@@ -128,9 +127,9 @@ export default function AboutManifesto() {
           {/* Metric 4 (Availability) */}
           <div className="about-metric">
             <div className="metric-val-wrap">
-              <span className="metric-status">
+              <span className="stat-num metric-avail-stat" style={{ color: "#10b981" }}>
                 <span className="avail-dot" />
-                Available
+                Open
               </span>
             </div>
             <span className="metric-label">{ABOUT_STATS[3].label}</span>

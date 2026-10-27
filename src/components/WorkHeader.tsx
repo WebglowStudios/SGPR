@@ -54,7 +54,7 @@ export default function WorkHeader({
           role="tab"
           aria-selected={activeFilter === "all"}
         >
-          All Works <span className="tab-count">(37)</span>
+          All Works <span className="tab-count desktop-only-inline">(37)</span><span className="tab-count mobile-only-inline">(12)</span>
         </button>
         <button
           className={`work-tab-btn ${activeFilter === "pr" ? "active" : ""}`}

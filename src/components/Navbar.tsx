@@ -94,13 +94,18 @@ export default function Navbar() {
             onClick={(e) => handleLinkClick(e, "#works")}
           >
             <span>Our Work</span>
+            <span className="arrow">↗</span>
           </a>
           <a
-            href="#services"
+            href="/services"
             className="ov-link"
-            onClick={(e) => handleLinkClick(e, "#services")}
+            onClick={(e) => {
+              setMenuOpen(false);
+              document.body.style.overflow = "";
+            }}
           >
             <span>Services</span>
+            <span className="arrow">↗</span>
           </a>
           <a
             href="#about"
@@ -108,6 +113,7 @@ export default function Navbar() {
             onClick={(e) => handleLinkClick(e, "#about")}
           >
             <span>About</span>
+            <span className="arrow">↗</span>
           </a>
           <a
             href="#clients"
@@ -115,6 +121,7 @@ export default function Navbar() {
             onClick={(e) => handleLinkClick(e, "#clients")}
           >
             <span>Clientele</span>
+            <span className="arrow">↗</span>
           </a>
           <a
             href="#contact"
@@ -122,6 +129,7 @@ export default function Navbar() {
             onClick={(e) => handleLinkClick(e, "#contact")}
           >
             <span>Contact</span>
+            <span className="arrow">↗</span>
           </a>
         </div>
         <div className="ov-right">
@@ -139,7 +147,7 @@ export default function Navbar() {
               className="ov-logo-img"
             />
             <p>Samit Gugle PR Agency</p>
-            <p>Mumbai · India · Est. 2020</p>
+            <p>Direction · Digital · Worldwide</p>
           </div>
         </div>
       </div>
