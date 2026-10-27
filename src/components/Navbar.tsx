@@ -61,15 +61,28 @@ export default function Navbar() {
             Samit Gugle<span className="nav-dot">.</span>
           </span>
         </a>
-        <button
-          id="burger"
-          className={menuOpen ? "open" : ""}
-          aria-label="Open menu"
-          onClick={toggleMenu}
-        >
-          <div className="bun top" />
-          <div className="bun bot" />
-        </button>
+        <div className="nav-right-actions">
+          <a
+            href="#contact"
+            className="nav-cta"
+            onClick={(e) => {
+              e.preventDefault();
+              const contactEl = document.getElementById("contact");
+              if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Start a Project ↗
+          </a>
+          <button
+            id="burger"
+            className={menuOpen ? "open" : ""}
+            aria-label="Open menu"
+            onClick={toggleMenu}
+          >
+            <div className="bun top" />
+            <div className="bun bot" />
+          </button>
+        </div>
       </header>
 
       {/* ── FULLSCREEN MENU ── */}

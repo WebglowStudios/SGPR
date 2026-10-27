@@ -27,8 +27,6 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-meta reveal">
           <span className="hero-pill">Direction &amp; Brand Architecture</span>
-          <span className="hero-pill-sep">·</span>
-          <span className="hero-location">Mumbai · Global</span>
         </div>
 
         <div className="hero-headline-wrap">

@@ -23,7 +23,8 @@
       --off: rgba(237, 231, 218, 0.6);
       --border: rgba(255, 255, 255, 0.08);
       --border-gold: rgba(192, 151, 59, 0.3);
-      --white: #ffffff;
+      --green: #14201a;
+      --forest: #0d1a14;
       --green-dark: #071910;
       --green-mid: #0e2b1d;
       --font-disp: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -91,8 +92,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.3rem 5%;
-      background: rgba(7, 7, 9, 0.75);
+      padding: 1.15rem 5%;
+      background: rgba(7, 7, 9, 0.78);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -102,14 +103,20 @@
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
+      flex-shrink: 0;
     }
 
     .nav-logo-img {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 10px rgba(192, 151, 59, 0.35));
+      filter: drop-shadow(0 2px 10px rgba(192, 151, 59, 0.4));
+      transition: transform 0.3s;
+    }
+
+    .nav-logo:hover .nav-logo-img {
+      transform: scale(1.05);
     }
 
     .nav-logo-name {
@@ -120,6 +127,7 @@
       color: var(--cream);
       text-transform: uppercase;
       line-height: 1;
+      white-space: nowrap;
     }
 
     .nav-dot {
@@ -130,21 +138,25 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-shrink: 0;
     }
 
     .nav-cta {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.55rem 1.2rem;
+      padding: 0.52rem 1.15rem;
       border-radius: 100px;
       background: rgba(192, 151, 59, 0.12);
       border: 1px solid var(--gold);
       color: var(--gold-2);
       font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+      line-height: 1;
       transition: all 0.3s var(--ease);
     }
 
@@ -153,41 +165,50 @@
       color: #000;
     }
 
+    /* Minimalist Original Luxury Menu Burger */
     #burger {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       gap: 6px;
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
+      padding: 6px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
       z-index: 9000;
+      width: 32px;
+      height: 32px;
     }
 
     .bun {
-      width: 22px;
-      height: 1.5px;
+      width: 28px;
+      height: 1px;
       background: var(--white);
-      transition: transform 0.4s var(--ease), opacity 0.3s;
+      transition: transform 0.45s var(--ease), opacity 0.3s, width 0.35s, background 0.3s;
+      transform-origin: center;
+    }
+
+    #burger:hover .bun {
+      background: var(--gold-2);
     }
 
     #burger.open .bun.top {
       transform: translateY(3.5px) rotate(45deg);
+      background: var(--white);
     }
     #burger.open .bun.bot {
-      transform: translateY(-4px) rotate(-45deg);
+      transform: translateY(-3.5px) rotate(-45deg);
+      background: var(--white);
     }
 
-    /* FULLSCREEN OVERLAY MENU */
+    /* FULLSCREEN OVERLAY MENU — SIGNATURE BRITISH RACING GREEN */
     #overlay {
       position: fixed;
       inset: 0;
       z-index: 750;
-      background: rgba(7, 7, 9, 0.98);
-      backdrop-filter: blur(25px);
+      background: var(--green, #14201a);
+      background: linear-gradient(160deg, #16241d 0%, #111e17 50%, #0a130f 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -233,7 +254,7 @@
     }
 
     /* ══════════════════════════════════════════════════════════════════
-       HERO CINEMATIC — FULL HEIGHT 100VH ON MOBILE & DESKTOP
+       HERO CINEMATIC — TRUE FULL 100VH ON MOBILE
        ══════════════════════════════════════════════════════════════════ */
     #hero.hero-cinematic {
       position: relative;
@@ -394,7 +415,7 @@
       color: var(--cream);
     }
 
-    /* DESKTOP BOTTOM STRIP (Eliminated on mobile as requested) */
+    /* DESKTOP BOTTOM STRIP (Hidden on mobile) */
     .hero-strip {
       position: relative;
       z-index: 5;
@@ -434,7 +455,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
       flex-wrap: wrap;
       gap: 1.5rem;
     }
@@ -530,27 +551,26 @@
     }
 
     /* ══════════════════════════════════════════════════════════════════
-       PORTFOLIO GRID SYSTEM — USING 100% AUTHENTIC LOCAL ASSETS
+       PORTFOLIO GRID SYSTEM — USING AUTHENTIC LOCAL ASSETS
        ══════════════════════════════════════════════════════════════════ */
     .portfolio-wrapper {
       padding: 1.5rem 5% 5rem;
     }
 
-    /* DESKTOP GRID (Default): Elegant Asymmetric Bento Rows */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
 
     .project-card {
       position: relative;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       background: var(--ink);
       border: 1px solid var(--border);
       cursor: pointer;
-      transition: transform 0.4s var(--ease), border-color 0.4s;
+      transition: transform 0.4s var(--ease), border-color 0.4s, opacity 0.35s ease;
     }
 
     .project-card:hover {
@@ -569,14 +589,14 @@
       transform: scale(1.035);
     }
 
-    /* PERMANENT MOBILE-FRIENDLY OVERLAY */
+    /* PERMANENT TOUCH-FRIENDLY OVERLAY */
     .card-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, 
         transparent 0%, 
-        rgba(7, 7, 9, 0.25) 40%, 
-        rgba(7, 7, 9, 0.95) 100%
+        rgba(7, 7, 9, 0.2) 40%, 
+        rgba(7, 7, 9, 0.94) 100%
       );
       display: flex;
       flex-direction: column;
@@ -630,6 +650,7 @@
       transform: translate(2px, -2px);
     }
 
+    /* Card description on desktop (Hidden on mobile to eliminate clutter!) */
     .card-desc {
       font-size: 0.78rem;
       color: var(--off);
@@ -693,6 +714,7 @@
       overflow: hidden;
       border: 1px solid var(--border);
       cursor: pointer;
+      transition: opacity 0.35s ease;
     }
 
     /* KINETIC MARQUEE RIBBON */
@@ -703,7 +725,7 @@
       border-bottom: 1px solid var(--border);
       padding: 1rem 0;
       overflow: hidden;
-      margin: 1rem 0;
+      margin: 0.5rem 0;
     }
 
     .marquee-track {
@@ -829,7 +851,7 @@
       margin-bottom: 1rem;
     }
 
-    /* INLINE IMAGE REVEAL (Solves the missing image on mobile!) */
+    /* INLINE IMAGE REVEAL ON MOBILE */
     .srv-mobile-img {
       display: none;
       width: 100%;
@@ -956,67 +978,98 @@
     }
 
     /* ══════════════════════════════════════════════════════════════════
-       CLIENTELE MARQUEE
+       CLIENTELE — LARGE, CRISP LOGOS (No text clutter!)
        ══════════════════════════════════════════════════════════════════ */
     #clients {
-      padding: 4.5rem 0;
+      padding: 5rem 0;
       background: var(--ink);
       border-bottom: 1px solid var(--border);
     }
 
     .clients-head {
-      padding: 0 5% 1.8rem;
+      padding: 0 5% 2rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
     }
 
+    /* CONTINUOUS LOGO MARQUEE */
+    .clients-marquee-wrap {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .clients-marquee-wrap::before,
+    .clients-marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .clients-marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--ink) 0%, transparent 100%);
+    }
+    .clients-marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--ink) 0%, transparent 100%);
+    }
+
     .clients-track {
       display: flex;
-      gap: 1.5rem;
-      padding: 0 5%;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
+      gap: 2rem;
+      width: max-content;
+      animation: clientLogoScroll 25s linear infinite;
+      padding: 0.6rem 0;
     }
-    .clients-track::-webkit-scrollbar { display: none; }
 
-    .client-card {
-      flex: 0 0 170px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.4rem 1rem;
+    .clients-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes clientLogoScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ENLARGED LOGO CONTAINERS & LOGO IMAGES */
+    .client-logo-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 0.8rem;
+      justify-content: center;
+      padding: 1.2rem 2.2rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
       cursor: pointer;
-      transition: border-color 0.3s;
+      transition: all 0.35s var(--ease);
+      min-width: 180px;
+      height: 90px;
     }
 
-    .client-card:hover {
+    .client-logo-item:hover {
       border-color: var(--gold);
+      background: rgba(192, 151, 59, 0.1);
+      transform: translateY(-3px);
     }
 
+    /* PROMINENT LOGO GRAPHICS */
     .client-logo {
-      height: 36px;
+      height: 48px;
       width: auto;
-      max-width: 110px;
+      max-width: 140px;
       object-fit: contain;
-      filter: brightness(0.9) contrast(1.1);
+      filter: brightness(1) contrast(1.1);
+      transition: filter 0.3s, transform 0.3s;
     }
 
-    .client-name {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--cream);
-    }
-
-    .client-cat {
-      font-size: 0.68rem;
-      color: var(--off);
+    .client-logo-item:hover .client-logo {
+      transform: scale(1.06);
+      filter: brightness(1.15) drop-shadow(0 0 12px rgba(192, 151, 59, 0.5));
     }
 
     /* ══════════════════════════════════════════════════════════════════
@@ -1098,30 +1151,194 @@
       transform: translateY(-2px);
     }
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--off);
+    .submit-feedback {
+      display: none;
+      font-size: 0.85rem;
+      color: #10b981;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
     }
 
     /* ══════════════════════════════════════════════════════════════════
-       RESPONSIVE BREAKPOINTS (OPTIMIZED FOR PHONE VIEW)
+       SLEEK MINIMALIST FOOTER (ARCHITECTURAL 3-TIER PLACEMENT)
+       ══════════════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 3.2rem 5% 2.4rem;
+      position: relative;
+    }
+
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    /* 1. Top Row: Brand Lockup + Back to Top */
+    .footer-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      transition: opacity 0.25s;
+    }
+
+    .footer-brand:hover {
+      opacity: 0.85;
+    }
+
+    .footer-logo-img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(192, 151, 59, 0.25));
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-disp);
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .footer-back-top {
+      color: var(--gold-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .footer-back-top:hover {
+      color: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    .back-top-arrow {
+      color: var(--gold);
+      font-size: 0.85rem;
+    }
+
+    /* 2. Middle Strip: Social Channels */
+    .footer-social-row {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-social-link {
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--off);
+      transition: color 0.2s, transform 0.2s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .footer-social-link:hover {
+      color: var(--gold-2);
+      transform: translateY(-1px);
+    }
+
+    /* 3. Bottom Row: Legal + Copyright */
+    .footer-colophon-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      font-size: 0.74rem;
+      color: rgba(237, 231, 218, 0.5);
+    }
+
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .footer-legal-item {
+      color: var(--off);
+      font-size: 0.74rem;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-legal-item:hover {
+      color: var(--gold-2);
+    }
+
+    .footer-bullet {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-copyright {
+      font-size: 0.72rem;
+      letter-spacing: 0.02em;
+      color: rgba(237, 231, 218, 0.45);
+    }
+
+    /* ══════════════════════════════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS (PHONE VIEW OPTIMIZED & UNCLUTTERED)
        ══════════════════════════════════════════════════════════════════ */
     @media (max-width: 900px) {
-      /* 1. Header */
+      /* 1. Breathable, Uncluttered Mobile Header (No Samit Gugle text, No wrapping CTA) */
       #nav {
-        padding: 1rem 5%;
+        padding: 0.8rem 5%;
+        min-height: 56px;
       }
       .nav-logo-name {
-        font-size: 1.08rem;
+        display: none !important;
+      }
+      .nav-logo-img {
+        width: 36px;
+        height: 36px;
+      }
+      .nav-right-actions {
+        gap: 0.75rem;
+      }
+      .nav-cta {
+        padding: 0.42rem 0.95rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      #burger {
+        width: 28px;
+        height: 28px;
+        padding: 4px 0;
+      }
+      .bun {
+        width: 24px;
       }
 
-      /* 2. HERO: FULL SCREEN HEIGHT ON MOBILE */
+      /* 2. HERO: FULL 100VH ON MOBILE */
       #hero.hero-cinematic {
         height: 100vh !important;
         height: 100svh !important;
@@ -1131,7 +1348,7 @@
         padding-top: 0;
       }
 
-      /* ELIMINATE SCROLL TO EXPLORE ON MOBILE AS REQUESTED */
+      /* ELIMINATE EXTRA CONTENT: Scroll strip removed */
       .hero-strip {
         display: none !important;
       }
@@ -1147,25 +1364,69 @@
       }
 
       .hero-lead {
-        font-size: 0.96rem;
+        font-size: 0.95rem;
         line-height: 1.45;
         margin-bottom: 1.5rem;
       }
 
-      /* 3. Portfolio Grid: Switches to Flagship Hero + Bento Duos */
+      /* 3. WORK SECTION & ELIMINATING EXTRA TEXT ON MOBILE */
+      .work-head-container {
+        padding: 3rem 5% 1rem;
+      }
+      .work-head-top {
+        margin-bottom: 1.2rem;
+      }
+      /* ELIMINATE EXTRA CONTENT: Hide long work subtitle on mobile */
+      .work-subtitle {
+        display: none !important;
+      }
+
+      /* 4. Portfolio Grid: Switches to Flagship Hero + Bento Duos */
       .portfolio-wrapper {
-        padding: 1.2rem 4% 4rem;
+        padding: 1rem 4% 3.5rem;
       }
       .portfolio-grid {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 12px;
       }
 
       /* Flagship Hero Cards */
       .col-span-8, .col-span-12 {
         height: auto;
         aspect-ratio: 4 / 5;
+      }
+
+      /* Compact Overlay on Mobile — Keeps Artwork Visible */
+      .card-overlay {
+        padding: 0.9rem 1rem;
+        background: linear-gradient(180deg, 
+          transparent 35%, 
+          rgba(7, 7, 9, 0.35) 65%, 
+          rgba(7, 7, 9, 0.92) 100%
+        );
+      }
+
+      /* Golden Glassmorphism Badges on Mobile */
+      .card-badge {
+        font-size: 0.60rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold-2);
+        background: rgba(192, 151, 59, 0.22);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(192, 151, 59, 0.42);
+        padding: 4px 11px;
+        border-radius: 100px;
+        margin-bottom: 0.35rem;
+        line-height: 1.15;
+        white-space: nowrap;
+        max-width: 88%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
       }
 
       /* Bento Duos: Grid of 2 columns */
@@ -1178,24 +1439,40 @@
         height: auto;
         aspect-ratio: 1 / 1.18;
       }
-      .bento-duo-row .card-title {
-        font-size: 1rem;
+      .bento-duo-row .card-overlay {
+        padding: 0.7rem 0.75rem;
       }
-      .bento-duo-row .card-desc {
-        display: none; /* Keeps bento cards clean on small screens */
+      .bento-duo-row .card-badge {
+        font-size: 0.54rem;
+        letter-spacing: 0.1em;
+        padding: 3.5px 9px;
+        margin-bottom: 0.25rem;
+      }
+      /* ELIMINATE EXTRA CONTENT: Hide paragraph captions on mobile cards! */
+      .card-desc {
+        display: none !important;
       }
 
       /* Swiper on Mobile */
       .swiper-row-section {
-        margin: 0.4rem 0;
+        margin: 0.3rem 0;
         padding: 1rem 0 1rem 12px;
       }
       .swiper-card {
         flex: 0 0 74%; /* 26% peek for visual swipe affordance */
-        height: 200px;
+        height: 190px;
+      }
+      .swiper-card .card-overlay {
+        padding: 0.7rem 0.8rem;
+      }
+      .swiper-card .card-badge {
+        font-size: 0.54rem;
+        letter-spacing: 0.1em;
+        padding: 3.5px 9px;
+        margin-bottom: 0.25rem;
       }
 
-      /* 4. Services: Hide Desktop Sticky Column & Reveal INLINE IMAGERY */
+      /* 5. Services: Hide Desktop Sticky Column & Reveal INLINE IMAGERY */
       .srv-layout {
         grid-template-columns: 1fr;
         gap: 0;
@@ -1210,10 +1487,21 @@
         max-height: 450px;
       }
 
-      /* 5. Metrics 2x2 on Mobile */
+      /* 6. About Section: ELIMINATE redundant narrative on mobile */
+      #about {
+        padding: 4rem 5%;
+      }
+      .about-narrative {
+        display: none !important;
+      }
+      .about-manifesto-heading {
+        margin-bottom: 2.2rem;
+      }
+
+      /* 7. Metrics 2x2 on Mobile */
       .metrics-container {
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 10px;
       }
       .metric-card {
         padding: 1.1rem 0.8rem;
@@ -1222,7 +1510,29 @@
         font-size: 2.2rem;
       }
 
-      /* 6. Form Fields */
+      /* 8. CLIENTELE: SUBSTANTIALLY INCREASED LOGO SIZE FOR PHONE */
+      #clients {
+        padding: 3.5rem 0;
+      }
+      .clients-head {
+        margin-bottom: 1.2rem;
+      }
+      .clients-track {
+        gap: 1.2rem;
+      }
+      .client-logo-item {
+        min-width: 165px;
+        height: 82px;
+        padding: 1rem 1.8rem;
+        border-radius: 12px;
+      }
+      .client-logo {
+        height: 44px; /* INCREASED FROM 26px to 44px! */
+        max-height: 44px;
+        max-width: 130px;
+      }
+
+      /* 9. Form Fields */
       .fg-row {
         grid-template-columns: 1fr;
       }
@@ -1231,15 +1541,74 @@
         justify-content: center;
       }
 
-      /* 7. Footer */
-      footer {
-        flex-direction: column;
+      /* 10. Sleek Architectural Mobile Footer */
+      .site-footer {
+        padding: 2.4rem 5% 1.8rem;
+      }
+      .footer-container {
+        gap: 1.4rem;
+      }
+      .footer-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-brand-name {
+        font-size: 0.95rem;
+      }
+      .footer-logo-img {
+        width: 28px;
+        height: 28px;
+      }
+      .footer-social-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         gap: 0.8rem;
-        text-align: center;
+        padding: 0.9rem 0;
+      }
+      .footer-social-link {
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+      }
+      .footer-colophon-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+      }
+      .footer-legal-item {
+        font-size: 0.72rem;
+      }
+      .footer-copyright {
+        font-size: 0.7rem;
       }
     }
 
     @media (max-width: 480px) {
+      #nav {
+        padding: 0.65rem 4%;
+        min-height: 50px;
+      }
+      .nav-logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .nav-right-actions {
+        gap: 0.55rem;
+      }
+      .nav-cta {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+      }
+      #burger {
+        width: 26px;
+        height: 26px;
+      }
+      .bun {
+        width: 22px;
+      }
       .hero-name {
         font-size: clamp(2.6rem, 11vw, 3.4rem);
       }
@@ -1253,16 +1622,100 @@
       .hero-cta-link {
         justify-content: center;
       }
+      .client-logo-item {
+        min-width: 155px;
+        height: 78px;
+        padding: 0.9rem 1.6rem;
+      }
+      .client-logo {
+        height: 40px;
+        max-height: 40px;
+        max-width: 120px;
+      }
+
+      /* Card Badges and Overlays for Small Mobile Screens */
+      .card-overlay {
+        padding: 0.75rem 0.8rem;
+      }
+      .card-badge {
+        font-size: 0.56rem;
+        letter-spacing: 0.1em;
+        padding: 3.5px 9.5px;
+        margin-bottom: 0.25rem;
+      }
+      .bento-duo-row .card-overlay {
+        padding: 0.6rem 0.65rem;
+      }
+      .bento-duo-row .card-badge {
+        font-size: 0.52rem;
+        letter-spacing: 0.09em;
+        padding: 3px 8.5px;
+        margin-bottom: 0.2rem;
+      }
+      .swiper-card {
+        flex: 0 0 78%;
+        height: 185px;
+      }
+      .swiper-card .card-overlay {
+        padding: 0.6rem 0.7rem;
+      }
+      .swiper-card .card-badge {
+        font-size: 0.52rem;
+        letter-spacing: 0.09em;
+        padding: 3px 8.5px;
+        margin-bottom: 0.2rem;
+      }
+
+      .site-footer {
+        padding: 2rem 5% 1.6rem;
+      }
+      .footer-container {
+        gap: 1.25rem;
+      }
+      .footer-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer-brand-name {
+        font-size: 0.88rem;
+      }
+      .footer-logo-img {
+        width: 26px;
+        height: 26px;
+      }
+      .footer-back-top {
+        font-size: 0.68rem;
+      }
+      .footer-social-row {
+        padding: 0.8rem 0;
+      }
+      .footer-social-link {
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+      }
+      .footer-colophon-row {
+        gap: 0.5rem;
+      }
+      .footer-legal-links {
+        gap: 0.65rem;
+      }
+      .footer-legal-item {
+        font-size: 0.68rem;
+      }
+      .footer-copyright {
+        font-size: 0.66rem;
+      }
     }
 
     /* ══════════════════════════════════════════════════════════════════
-       FULLSCREEN LIGHTBOX MODAL
+       FULLSCREEN LIGHTBOX MODAL WITH FULL ARROW NAVIGATION
        ══════════════════════════════════════════════════════════════════ */
     .lightbox-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(18px);
       z-index: 10000;
       display: none;
       flex-direction: column;
@@ -1301,24 +1754,56 @@
       cursor: pointer;
     }
 
+    .lb-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .lb-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      z-index: 20;
+    }
+
+    .lb-nav-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
     .lb-img-wrap {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem 0;
+      max-height: 65vh;
     }
 
     .lb-img-wrap img {
       max-width: 100%;
-      max-height: 68vh;
+      max-height: 65vh;
       object-fit: contain;
       border-radius: 10px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
+      transition: opacity 0.25s ease;
     }
 
     .lb-meta {
-      background: rgba(18, 18, 24, 0.85);
+      background: rgba(18, 18, 24, 0.9);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1rem 1.4rem;
@@ -1361,7 +1846,7 @@
         <span>Our Work</span>
         <span class="arrow">↗</span>
       </a>
-      <a href="#services" class="ov-link" onclick="toggleMenu()">
+      <a href="services-preview.html" class="ov-link">
         <span>Services</span>
         <span class="arrow">↗</span>
       </a>
@@ -1399,12 +1884,10 @@
       <div class="hero-noise"></div>
     </div>
 
-    <!-- MAIN HERO CONTENT (ANCHORED BEAUTIFULLY AT BOTTOM) -->
+    <!-- MAIN HERO CONTENT (ANCHORED CLEANLY AT BOTTOM) -->
     <div class="hero-content">
       <div class="hero-meta">
         <span>Direction &amp; Brand Architecture</span>
-        <span class="hero-pill-sep">·</span>
-        <span class="hero-location">Mumbai · Global</span>
       </div>
 
       <h1 class="hero-name">Samit Gugle</h1>
@@ -1426,7 +1909,7 @@
     </div>
   </section>
 
-  <!-- 3. PORTFOLIO & WORK HEADER -->
+  <!-- 3. PORTFOLIO & WORK HEADER (UNCLUTTERED ON MOBILE) -->
   <main id="works">
     <div class="work-head-container">
       <div class="work-head-top">
@@ -1442,9 +1925,9 @@
         </a>
       </div>
 
-      <!-- HORIZONTAL SCROLLING CATEGORY TABS -->
+      <!-- HORIZONTAL SCROLLING CATEGORY TABS (FULLY FUNCTIONAL INTERACTIVE FILTERING!) -->
       <div class="work-tabs-bar">
-        <button class="work-tab-btn active" onclick="filterCategory('all', this)">All Works (37)</button>
+        <button class="work-tab-btn active" onclick="filterCategory('all', this)">All Works (12)</button>
         <button class="work-tab-btn" onclick="filterCategory('pr', this)">PR Campaigns</button>
         <button class="work-tab-btn" onclick="filterCategory('brand', this)">Brand Identity</button>
         <button class="work-tab-btn" onclick="filterCategory('editorial', this)">Fashion &amp; Editorial</button>
@@ -1457,13 +1940,13 @@
 
     <!-- 4. OPTIMIZED PORTFOLIO GRID USING AUTHENTIC LOCAL ASSETS -->
     <div class="portfolio-wrapper">
-      <div class="portfolio-grid">
+      <div class="portfolio-grid" id="portfolioGrid">
 
         <!-- 1. FLAGSHIP HERO CARD: ESPN US Open -->
-        <article class="project-card col-span-8" onclick="openLightbox('/assets/jessie-work/01-espn.jpg', 'ESPN — US Open 50th Anniversary', 'Court Artwork & Cultural Commercial Direction')">
+        <article class="project-card col-span-8" data-category="pr commercial editorial" onclick="openLightboxByIndex(0)">
           <img src="/assets/jessie-work/01-espn.jpg" alt="ESPN Artwork" loading="lazy" />
           <div class="card-overlay">
-            <span class="card-badge">Commercial Direction</span>
+            <span class="card-badge">Direction</span>
             <div class="card-title">
               <span>ESPN <em>US Open</em></span>
               <span class="card-arrow">↗</span>
@@ -1473,10 +1956,10 @@
         </article>
 
         <!-- 2. CARD: Grubhub Mandala Installation -->
-        <article class="project-card col-span-4" onclick="openLightbox('/assets/jessie-work/02-grubhub.jpg', 'GRUBHUB Mandala', 'Surreal Silverware Mandala Art Installation')">
+        <article class="project-card col-span-4" data-category="spatial brand" onclick="openLightboxByIndex(1)">
           <img src="/assets/jessie-work/02-grubhub.jpg" alt="Grubhub Mandala" loading="lazy" />
           <div class="card-overlay">
-            <span class="card-badge">Installation Art</span>
+            <span class="card-badge">Installation</span>
             <div class="card-title">
               <span>GRUBHUB</span>
               <span class="card-arrow">↗</span>
@@ -1487,10 +1970,10 @@
 
         <!-- 3 & 4. ASYMMETRIC BENTO DUO: MTV & Specialized -->
         <div class="bento-duo-row" style="grid-column: span 12;">
-          <article class="project-card" onclick="openLightbox('/assets/jessie-work/03-mtv.jpg', 'MTV — Miley Cyrus Portrait', 'Mixed Media Ephemera & Guitar Strings')">
+          <article class="project-card" data-category="editorial brand" onclick="openLightboxByIndex(2)">
             <img src="/assets/jessie-work/03-mtv.jpg" alt="MTV Portrait" loading="lazy" />
             <div class="card-overlay">
-              <span class="card-badge">Celebrity Portrait</span>
+              <span class="card-badge">Portrait</span>
               <div class="card-title">
                 <span>MTV <em>Miley Cyrus</em></span>
                 <span class="card-arrow">↗</span>
@@ -1499,10 +1982,10 @@
             </div>
           </article>
 
-          <article class="project-card" onclick="openLightbox('/assets/jessie-work/04-specialized.jpg', 'SPECIALIZED', 'Mountain Valley Large-Scale Canvas Portrait')">
+          <article class="project-card" data-category="commercial editorial" onclick="openLightboxByIndex(3)">
             <img src="/assets/jessie-work/04-specialized.jpg" alt="Specialized Canvas" loading="lazy" />
             <div class="card-overlay">
-              <span class="card-badge">Large Scale Art</span>
+              <span class="card-badge">Large Scale</span>
               <div class="card-title">
                 <span>SPECIALIZED</span>
                 <span class="card-arrow">↗</span>
@@ -1513,29 +1996,29 @@
         </div>
 
         <!-- 5. OOH TAKE-OVERS SWIPER WITH PEEK AFFORDANCE -->
-        <div class="swiper-row-section">
+        <div class="swiper-row-section" data-category="spatial pr">
           <div class="swiper-head">
             <span class="swiper-heading">Sculptural &amp; Experimental Releases</span>
             <span class="swiper-hint">Swipe →</span>
           </div>
           <div class="swiper-track">
-            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/07-butter-sneaker.jpg', 'AIR FORCE 1 Butter Sneaker', 'Sculpted Pure Butter Sneaker for Bleacher Report')">
+            <div class="swiper-card" data-category="spatial brand" onclick="openLightboxByIndex(6)">
               <img src="/assets/jessie-work/07-butter-sneaker.jpg" alt="Butter Sneaker" loading="lazy" />
               <div class="card-overlay">
-                <span class="card-badge">Sculptural Art</span>
+                <span class="card-badge">Sculptural</span>
                 <div class="card-title">AIR FORCE 1 <em>Butter</em></div>
               </div>
             </div>
 
-            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/08-making-it.jpg', 'NBC Making It', 'Architectural Translucent Spatial Installation')">
+            <div class="swiper-card" data-category="spatial brand" onclick="openLightboxByIndex(7)">
               <img src="/assets/jessie-work/08-making-it.jpg" alt="Making It" loading="lazy" />
               <div class="card-overlay">
-                <span class="card-badge">Spatial Installation</span>
+                <span class="card-badge">Spatial</span>
                 <div class="card-title">NBC Making It</div>
               </div>
             </div>
 
-            <div class="swiper-card" onclick="openLightbox('/assets/jessie-work/09-american-express.jpg', 'American Express Platinum', 'Commercial Art & VIP Direction')">
+            <div class="swiper-card" data-category="pr commercial" onclick="openLightboxByIndex(8)">
               <img src="/assets/jessie-work/09-american-express.jpg" alt="American Express" loading="lazy" />
               <div class="card-overlay">
                 <span class="card-badge">VIP Direction</span>
@@ -1560,10 +2043,10 @@
         </div>
 
         <!-- 7. FLAGSHIP CARD: Walmart Curated Object Installation -->
-        <article class="project-card col-span-8" onclick="openLightbox('/assets/jessie-work/05-walmart.jpg', 'WALMART — Experiential Object Wall', 'Chromatically Curated Object Wall Art Installation')">
+        <article class="project-card col-span-8" data-category="spatial brand" onclick="openLightboxByIndex(4)">
           <img src="/assets/jessie-work/05-walmart.jpg" alt="Walmart Installation" loading="lazy" />
           <div class="card-overlay">
-            <span class="card-badge">Experiential Architecture</span>
+            <span class="card-badge">Experiential</span>
             <div class="card-title">
               <span>WALMART <em>Chromatic Wall</em></span>
               <span class="card-arrow">↗</span>
@@ -1573,10 +2056,10 @@
         </article>
 
         <!-- 8. CARD: Marvel x M&M -->
-        <article class="project-card col-span-4" onclick="openLightbox('/assets/jessie-work/06-marvel.jpg', 'MARVEL x M&amp;M', 'Guardians of the Galaxy Edible Art Mosaic')">
+        <article class="project-card col-span-4" data-category="brand commercial" onclick="openLightboxByIndex(5)">
           <img src="/assets/jessie-work/06-marvel.jpg" alt="Marvel Artwork" loading="lazy" />
           <div class="card-overlay">
-            <span class="card-badge">Edible Art Mosaic</span>
+            <span class="card-badge">Edible Art</span>
             <div class="card-title">
               <span>MARVEL <em>x M&amp;M</em></span>
               <span class="card-arrow">↗</span>
@@ -1587,10 +2070,10 @@
 
         <!-- 9 & 10. BENTO DUO: Joe Fresh & GAP -->
         <div class="bento-duo-row" style="grid-column: span 12;">
-          <article class="project-card" onclick="openLightbox('/assets/jessie-work/10-joe-fresh.jpg', 'JOE FRESH', 'Fashion Campaign Direction & Creative Strategy')">
+          <article class="project-card" data-category="editorial brand" onclick="openLightboxByIndex(9)">
             <img src="/assets/jessie-work/10-joe-fresh.jpg" alt="Joe Fresh" loading="lazy" />
             <div class="card-overlay">
-              <span class="card-badge">Fashion Editorial</span>
+              <span class="card-badge">Editorial</span>
               <div class="card-title">
                 <span>JOE FRESH</span>
                 <span class="card-arrow">↗</span>
@@ -1599,10 +2082,10 @@
             </div>
           </article>
 
-          <article class="project-card" onclick="openLightbox('/assets/jessie-work/11-gap.jpg', 'GAP Heritage', 'Heritage Apparel & Global Campaign Direction')">
+          <article class="project-card" data-category="brand commercial" onclick="openLightboxByIndex(10)">
             <img src="/assets/jessie-work/11-gap.jpg" alt="GAP" loading="lazy" />
             <div class="card-overlay">
-              <span class="card-badge">Apparel Direction</span>
+              <span class="card-badge">Apparel</span>
               <div class="card-title">
                 <span>GAP <em>Heritage</em></span>
                 <span class="card-arrow">↗</span>
@@ -1613,10 +2096,10 @@
         </div>
 
         <!-- 11. FINAL FLAGSHIP: Dramamine Commercial Food Art -->
-        <article class="project-card col-span-12" onclick="openLightbox('/assets/jessie-work/12-dramamine.jpg', 'DRAMAMINE', 'Commercial Food Art Campaign & Brand Retrospect')">
+        <article class="project-card col-span-12" data-category="brand commercial" onclick="openLightboxByIndex(11)">
           <img src="/assets/jessie-work/12-dramamine.jpg" alt="Dramamine" loading="lazy" />
           <div class="card-overlay">
-            <span class="card-badge">Commercial Food Art</span>
+            <span class="card-badge">Food Art</span>
             <div class="card-title">
               <span>DRAMAMINE <em>Campaign</em></span>
               <span class="card-arrow">↗</span>
@@ -1774,7 +2257,7 @@
     </div>
   </section>
 
-  <!-- 6. ABOUT / MANIFESTO & 2x2 BALANCED METRICS -->
+  <!-- 6. ABOUT / MANIFESTO & 2x2 BALANCED METRICS (UNCLUTTERED ON MOBILE) -->
   <section id="about">
     <span class="eyebrow" style="color: var(--gold-2);">Studio Practice &amp; Manifesto</span>
     <h2 class="about-manifesto-heading">
@@ -1814,7 +2297,7 @@
     <a href="#contact" class="manifesto-btn">the Studio &mdash; Start a Project ↗</a>
   </section>
 
-  <!-- 7. CLIENTELE USING AUTHENTIC LOCAL LOGOS -->
+  <!-- 7. CLIENTELE — ENLARGED LOGOS WITH HIGH CONTRAST (NO TEXT CLUTTER!) -->
   <section id="clients">
     <div class="clients-head">
       <div>
@@ -1826,46 +2309,58 @@
       <a href="#contact" class="nav-cta" style="padding: 0.5rem 1.2rem;">Elevate Your Brand ↗</a>
     </div>
 
-    <div class="clients-track">
-      <div class="client-card" onclick="openLightbox('/assets/logos/walmart.png', 'Walmart', 'Global Retail & Enterprise Communications')">
-        <img src="/assets/logos/walmart.png" alt="Walmart" class="client-logo" />
-        <span class="client-name">Walmart</span>
-        <span class="client-cat">Enterprise Retail</span>
-      </div>
+    <!-- SEAMLESS CLIENT LOGO MARQUEE -->
+    <div class="clients-marquee-wrap">
+      <div class="clients-track">
+        <!-- Logo 1: Walmart -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(4)">
+          <img src="/assets/logos/walmart.png" alt="Walmart" class="client-logo" />
+        </div>
+        <!-- Logo 2: Sony Music -->
+        <div class="client-logo-item">
+          <img src="/assets/logos/sony-music.png" alt="Sony Music" class="client-logo" />
+        </div>
+        <!-- Logo 3: GAP -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(10)">
+          <img src="/assets/logos/gap.png" alt="GAP" class="client-logo" />
+        </div>
+        <!-- Logo 4: ESPN -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(0)">
+          <img src="/assets/logos/espn.png" alt="ESPN" class="client-logo" />
+        </div>
+        <!-- Logo 5: American Express -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(8)">
+          <img src="/assets/logos/american-express.png" alt="American Express" class="client-logo" />
+        </div>
+        <!-- Logo 6: MTV -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(2)">
+          <img src="/assets/logos/mtv.png" alt="MTV" class="client-logo" />
+        </div>
 
-      <div class="client-card" onclick="openLightbox('/assets/logos/sony-music.png', 'Sony Music', 'Global Music & Entertainment Storytelling')">
-        <img src="/assets/logos/sony-music.png" alt="Sony Music" class="client-logo" />
-        <span class="client-name">Sony Music</span>
-        <span class="client-cat">Entertainment</span>
-      </div>
-
-      <div class="client-card" onclick="openLightbox('/assets/logos/gap.png', 'GAP', 'Heritage Apparel & Global Fashion Campaign Direction')">
-        <img src="/assets/logos/gap.png" alt="GAP" class="client-logo" />
-        <span class="client-name">GAP</span>
-        <span class="client-cat">Apparel &amp; Fashion</span>
-      </div>
-
-      <div class="client-card" onclick="openLightbox('/assets/logos/espn.png', 'ESPN', 'Sports Media Broadcast & Digital Cultural Takeover')">
-        <img src="/assets/logos/espn.png" alt="ESPN" class="client-logo" />
-        <span class="client-name">ESPN</span>
-        <span class="client-cat">Sports Media</span>
-      </div>
-
-      <div class="client-card" onclick="openLightbox('/assets/logos/american-express.png', 'American Express', 'Global Financial Services & Premium Lifestyle')">
-        <img src="/assets/logos/american-express.png" alt="AMEX" class="client-logo" />
-        <span class="client-name">American Express</span>
-        <span class="client-cat">Finance</span>
-      </div>
-
-      <div class="client-card" onclick="openLightbox('/assets/logos/mtv.png', 'MTV', 'Global Youth Culture, Music & Television Direction')">
-        <img src="/assets/logos/mtv.png" alt="MTV" class="client-logo" />
-        <span class="client-name">MTV</span>
-        <span class="client-cat">Youth Culture</span>
+        <!-- DUPLICATED FOR SEAMLESS 100% INFINITE LOOP -->
+        <div class="client-logo-item" onclick="openLightboxByIndex(4)">
+          <img src="/assets/logos/walmart.png" alt="Walmart" class="client-logo" />
+        </div>
+        <div class="client-logo-item">
+          <img src="/assets/logos/sony-music.png" alt="Sony Music" class="client-logo" />
+        </div>
+        <div class="client-logo-item" onclick="openLightboxByIndex(10)">
+          <img src="/assets/logos/gap.png" alt="GAP" class="client-logo" />
+        </div>
+        <div class="client-logo-item" onclick="openLightboxByIndex(0)">
+          <img src="/assets/logos/espn.png" alt="ESPN" class="client-logo" />
+        </div>
+        <div class="client-logo-item" onclick="openLightboxByIndex(8)">
+          <img src="/assets/logos/american-express.png" alt="American Express" class="client-logo" />
+        </div>
+        <div class="client-logo-item" onclick="openLightboxByIndex(2)">
+          <img src="/assets/logos/mtv.png" alt="MTV" class="client-logo" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. CONTACT SECTION -->
+  <!-- 8. CONTACT SECTION (FUNCTIONAL SUBMIT + CHECKMARK FEEDBACK) -->
   <section id="contact">
     <div class="contact-inner">
       <div class="contact-head">
@@ -1877,38 +2372,70 @@
         </h2>
       </div>
 
-      <form class="c-form" onsubmit="event.preventDefault(); alert('Inquiry sent successfully!');">
+      <form class="c-form" id="contactForm" onsubmit="handleFormSubmit(event)">
         <div class="fg-row">
-          <input type="text" class="c-input" placeholder="Full Name *" required />
-          <input type="email" class="c-input" placeholder="Email *" required />
+          <input type="text" class="c-input" name="name" placeholder="Full Name *" required />
+          <input type="email" class="c-input" name="email" placeholder="Email *" required />
         </div>
         <div class="fg-row">
-          <input type="text" class="c-input" placeholder="Company *" required />
-          <input type="url" class="c-input" placeholder="Website" />
+          <input type="text" class="c-input" name="company" placeholder="Company *" required />
+          <input type="url" class="c-input" name="website" placeholder="Website" />
         </div>
-        <textarea class="c-input c-textarea" placeholder="Your challenge or project objective *" required></textarea>
-        <button type="submit" class="submit-btn">Send Inquiry ↗</button>
+        <textarea class="c-input c-textarea" name="message" placeholder="Your challenge or project objective *" required></textarea>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span>Send Inquiry ↗</span>
+        </button>
+        <p class="submit-feedback" id="submitFeedback">✓ Inquiry Sent! We will be in touch shortly.</p>
       </form>
     </div>
   </section>
 
-  <!-- 9. FOOTER -->
-  <footer>
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <img src="/assets/samit-gugle-logo.png" alt="Logo" style="width: 24px; height: 24px; object-fit: contain;" />
-      <span>Samit Gugle PR Agency · Mumbai · Global · © 2026</span>
+  <!-- 9. SLEEK MINIMALIST FOOTER (ARCHITECTURAL 3-TIER PLACEMENT) -->
+  <footer id="footer" class="site-footer">
+    <div class="footer-container">
+      <!-- Tier 1: Logo Lockup on Left + Back to Top on Right -->
+      <div class="footer-header-row">
+        <a href="#hero" class="footer-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+          <img src="/assets/samit-gugle-logo.png" alt="Samit Gugle Logo" class="footer-logo-img" />
+          <span class="footer-brand-name">SAMIT GUGLE<span class="nav-dot">.</span></span>
+        </a>
+        <a href="#hero" class="footer-back-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+          <span>Back to top</span>
+          <span class="back-top-arrow">↑</span>
+        </a>
+      </div>
+
+      <!-- Tier 2: Horizontal Social Channels Ribbon -->
+      <nav class="footer-social-row" aria-label="Social media">
+        <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-link">Instagram ↗</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-social-link">LinkedIn ↗</a>
+        <a href="https://x.com" target="_blank" rel="noopener" class="footer-social-link">X (Twitter) ↗</a>
+      </nav>
+
+      <!-- Tier 3: Legal Links + Copyright -->
+      <div class="footer-colophon-row">
+        <div class="footer-legal-links">
+          <a href="#privacy" class="footer-legal-item" onclick="openPolicyModal('Privacy Policy'); return false;">Privacy Policy</a>
+          <span class="footer-bullet">·</span>
+          <a href="#tnc" class="footer-legal-item" onclick="openPolicyModal('Terms & Conditions'); return false;">Terms &amp; Conditions</a>
+        </div>
+        <span class="footer-copyright">© 2026 Samit Gugle PR Agency. All rights reserved.</span>
+      </div>
     </div>
-    <a href="#hero" style="color: var(--gold); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.12em;">Back to top ↑</a>
   </footer>
 
-  <!-- FULLSCREEN LIGHTBOX MODAL -->
+  <!-- FULLSCREEN LIGHTBOX MODAL WITH WORKING ARROW NAVIGATION -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
     <div class="lb-top">
-      <span class="lb-badge">Selected Artwork</span>
+      <span class="lb-badge" id="lbBadge">Selected Artwork</span>
       <button class="lb-close" onclick="closeLightbox()">&times;</button>
     </div>
-    <div class="lb-img-wrap">
-      <img id="lbImg" src="" alt="Project Artwork" onclick="event.stopPropagation()" />
+    <div class="lb-main" onclick="event.stopPropagation()">
+      <button class="lb-nav-btn prev" onclick="navigateLightbox(-1)" aria-label="Previous artwork">&#8592;</button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" src="" alt="Project Artwork" />
+      </div>
+      <button class="lb-nav-btn next" onclick="navigateLightbox(1)" aria-label="Next artwork">&#8594;</button>
     </div>
     <div class="lb-meta" onclick="event.stopPropagation()">
       <h3 class="lb-title" id="lbTitle">Title</h3>
@@ -1916,8 +2443,26 @@
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC -->
+  <!-- COMPLETE INTERACTIVE JAVASCRIPT LOGIC -->
   <script>
+    // 1. MASTER GALLERY DATA FOR ARROW NAVIGATION
+    const GALLERY_ITEMS = [
+      { src: '/assets/jessie-work/01-espn.jpg', title: 'ESPN — US Open 50th Anniversary', caption: 'Court Artwork & Cultural Commercial Direction' },
+      { src: '/assets/jessie-work/02-grubhub.jpg', title: 'GRUBHUB Mandala', caption: 'Surreal Silverware Mandala Art Installation' },
+      { src: '/assets/jessie-work/03-mtv.jpg', title: 'MTV — Miley Cyrus Portrait', caption: 'Mixed Media Ephemera & Guitar Strings' },
+      { src: '/assets/jessie-work/04-specialized.jpg', title: 'SPECIALIZED', caption: 'Mountain Valley Large-Scale Canvas Portrait' },
+      { src: '/assets/jessie-work/05-walmart.jpg', title: 'WALMART — Experiential Object Wall', caption: 'Chromatically Curated Object Wall Art Installation' },
+      { src: '/assets/jessie-work/06-marvel.jpg', title: 'MARVEL x M&M', caption: 'Guardians of the Galaxy Edible Art Mosaic' },
+      { src: '/assets/jessie-work/07-butter-sneaker.jpg', title: 'AIR FORCE 1 Butter Sneaker', caption: 'Sculpted Pure Butter Sneaker for Bleacher Report' },
+      { src: '/assets/jessie-work/08-making-it.jpg', title: 'NBC Making It', caption: 'Architectural Translucent Spatial Installation' },
+      { src: '/assets/jessie-work/09-american-express.jpg', title: 'American Express Platinum', caption: 'Commercial Art & VIP Direction' },
+      { src: '/assets/jessie-work/10-joe-fresh.jpg', title: 'JOE FRESH', caption: 'Fashion Campaign Direction & Creative Strategy' },
+      { src: '/assets/jessie-work/11-gap.jpg', title: 'GAP Heritage', caption: 'Heritage Apparel & Global Campaign Direction' },
+      { src: '/assets/jessie-work/12-dramamine.jpg', title: 'DRAMAMINE', caption: 'Commercial Food Art Campaign & Brand Retrospect' }
+    ];
+    let currentLightboxIdx = 0;
+
+    // 2. FULLSCREEN OVERLAY MENU
     function toggleMenu() {
       const burger = document.getElementById('burger');
       const overlay = document.getElementById('overlay');
@@ -1927,25 +2472,82 @@
       document.body.style.overflow = !isOpen ? 'hidden' : '';
     }
 
+    // 3. FULLY FUNCTIONAL DYNAMIC CATEGORY FILTERING
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.work-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (cat === 'avail') {
+        const contact = document.getElementById('contact');
+        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Filter all cards
+      const cards = document.querySelectorAll('.project-card, .swiper-row-section');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category') || '';
+        if (cat === 'all' || cardCat.includes(cat)) {
+          card.style.display = '';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 20);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(8px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 250);
+        }
+      });
+    }
+
+    // 4. SERVICES ACCORDION & PREVIEW
     function selectService(index, imgSrc, card) {
+      const isOpen = card.classList.contains('open');
       document.querySelectorAll('.srv-acc-card').forEach(c => c.classList.remove('open'));
-      card.classList.add('open');
+      if (!isOpen) {
+        card.classList.add('open');
+      }
       const desktopImg = document.getElementById('desktopSrvImg');
       if (desktopImg) {
         desktopImg.style.opacity = '0';
         setTimeout(() => {
           desktopImg.src = imgSrc;
           desktopImg.style.opacity = '1';
-        }, 250);
+        }, 220);
       }
     }
 
-    function openLightbox(src, title, caption) {
-      document.getElementById('lbImg').src = src;
-      document.getElementById('lbTitle').textContent = title;
-      document.getElementById('lbCaption').textContent = caption;
+    // 5. LIGHTBOX MODAL WITH FULL NAVIGATION
+    function openLightboxByIndex(index) {
+      currentLightboxIdx = index;
+      renderLightbox();
       document.getElementById('lightboxModal').classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+
+    function renderLightbox() {
+      const item = GALLERY_ITEMS[currentLightboxIdx];
+      if (!item) return;
+      const img = document.getElementById('lbImg');
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = item.src;
+        img.alt = item.title;
+        img.style.opacity = '1';
+      }, 150);
+      document.getElementById('lbTitle').textContent = item.title;
+      document.getElementById('lbCaption').textContent = item.caption;
+      document.getElementById('lbBadge').textContent = `Artwork ${currentLightboxIdx + 1} of ${GALLERY_ITEMS.length}`;
+    }
+
+    function navigateLightbox(direction) {
+      currentLightboxIdx += direction;
+      if (currentLightboxIdx < 0) currentLightboxIdx = GALLERY_ITEMS.length - 1;
+      if (currentLightboxIdx >= GALLERY_ITEMS.length) currentLightboxIdx = 0;
+      renderLightbox();
     }
 
     function closeLightbox() {
@@ -1953,18 +2555,38 @@
       document.body.style.overflow = '';
     }
 
-    function filterCategory(cat, btn) {
-      document.querySelectorAll('.work-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      if (cat === 'avail') {
-        const contact = document.getElementById('contact');
-        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
-      }
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // 6. CONTACT FORM SUBMISSION FEEDBACK
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const feedback = document.getElementById('submitFeedback');
+      btn.innerHTML = '<span>Sending...</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>Sent ✓</span>';
+        btn.style.background = '#10b981';
+        feedback.style.display = 'block';
+        document.getElementById('contactForm').reset();
+        setTimeout(() => {
+          btn.innerHTML = '<span>Send Inquiry ↗</span>';
+          btn.style.background = 'var(--gold)';
+          feedback.style.display = 'none';
+        }, 3500);
+      }, 600);
     }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
+    // 7. LEGAL POLICY HANDLER
+    function openPolicyModal(title) {
+      alert(`${title}\n\nSamit Gugle PR Agency operates with complete confidentiality and strict adherence to client data privacy guidelines, NDA agreements, and international editorial standards.`);
+    }
   </script>
 </body>
 </html>
