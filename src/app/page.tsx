@@ -81,6 +81,16 @@ export default function Home() {
     };
     anchors.forEach((a) => a.addEventListener("click", onAnchorClick));
 
+    // 4. Scroll to target if page loaded with a hash
+    if (window.location.hash) {
+      setTimeout(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+    }
+
     return () => {
       io.disconnect();
       magButtons.forEach((btn) => {

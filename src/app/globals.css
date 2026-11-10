@@ -365,10 +365,12 @@ body:has(.carousel-btn:hover) #cur-outer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 8%;
-  gap: .6rem;
+  padding: 4rem 10%;
+  gap: 0.75rem;
   clip-path: inset(0 0 100% 0);
   transition: clip-path .7s var(--ease);
+  overflow-y: auto;
+  max-height: 100vh;
 }
 
 .ov-right {
@@ -414,30 +416,63 @@ body:has(.carousel-btn:hover) #cur-outer {
 
 .ov-link {
   overflow: hidden;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: padding-left 0.35s var(--ease), border-color 0.35s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ov-link:hover {
+  padding-left: 14px;
+  border-bottom-color: rgba(192, 151, 59, 0.45);
 }
 
 .ov-link span {
   display: block;
   font-family: var(--f-disp);
   font-weight: 900;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(2.2rem, 3.8vw, 3.8rem);
+  letter-spacing: -0.035em;
   color: var(--cream);
-  transform: translateY(100%);
+  line-height: 1.1;
+  transform: translateY(115%);
   transition: transform .6s var(--ease), color .3s;
 }
 
+.ov-link span.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-disp);
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 500;
+  color: var(--gold);
+  margin-left: 1.5rem;
+  opacity: 0.85;
+  transform: translateY(115%);
+  transition: transform .6s var(--ease), color .3s, opacity .3s;
+}
+
 #overlay.open .ov-link span { transform: translateY(0); }
-.ov-link:nth-child(1) span { transition-delay: .15s; }
-.ov-link:nth-child(2) span { transition-delay: .22s; }
-.ov-link:nth-child(3) span { transition-delay: .29s; }
-.ov-link:nth-child(4) span { transition-delay: .36s; }
-.ov-link:nth-child(5) span { transition-delay: .43s; }
+.ov-link:nth-child(1) span { transition-delay: .12s; }
+.ov-link:nth-child(2) span { transition-delay: .18s; }
+.ov-link:nth-child(3) span { transition-delay: .24s; }
+.ov-link:nth-child(4) span { transition-delay: .30s; }
+.ov-link:nth-child(5) span { transition-delay: .36s; }
 
 .ov-link:hover span { color: var(--gold-2); }
+.ov-link:hover span.arrow {
+  color: var(--gold-2);
+  opacity: 1;
+  transform: translateY(0) translate(6px, -4px);
+}
 
-@media (max-width: 680px) {
+@media (max-width: 900px) {
   #overlay { grid-template-columns: 1fr; }
   .ov-right { display: none; }
 }

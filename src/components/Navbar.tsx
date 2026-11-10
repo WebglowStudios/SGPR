@@ -15,6 +15,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle ESC key to close overlay
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && menuOpen) {
+        setMenuOpen(false);
+        document.body.style.overflow = "";
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
+  // Clean up body overflow when unmounting
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   const toggleMenu = () => {
     const nextState = !menuOpen;
     setMenuOpen(nextState);
@@ -27,14 +46,31 @@ export default function Navbar() {
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    targetPathOrHash: string
   ) => {
-    e.preventDefault();
     setMenuOpen(false);
     document.body.style.overflow = "";
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+
+    // In-page hash target (e.g. "#works", "#about", "#clients", "#contact")
+    if (targetPathOrHash.startsWith("#")) {
+      const target = document.querySelector(targetPathOrHash);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Element not on this page (e.g. user is on /services) -> navigate to /#hash
+        e.preventDefault();
+        window.location.href = `/${targetPathOrHash}`;
+      }
+      return;
+    }
+
+    // Page route (e.g. "/services", "/")
+    if (targetPathOrHash.startsWith("/")) {
+      if (typeof window !== "undefined" && window.location.pathname === targetPathOrHash) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 
@@ -44,11 +80,13 @@ export default function Navbar() {
       <header id="nav" className={scrolled ? "scrolled" : ""}>
         <a
           className="nav-logo"
-          href="#"
+          href="/"
           aria-label="Samit Gugle PR Agency"
           onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            if (typeof window !== "undefined" && window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,12 +101,14 @@ export default function Navbar() {
         </a>
         <div className="nav-right-actions">
           <a
-            href="#contact"
+            href="/#contact"
             className="nav-cta"
             onClick={(e) => {
-              e.preventDefault();
               const contactEl = document.getElementById("contact");
-              if (contactEl) contactEl.scrollIntoView({ behavior: "smooth" });
+              if (contactEl) {
+                e.preventDefault();
+                contactEl.scrollIntoView({ behavior: "smooth" });
+              }
             }}
           >
             Start a Project ↗
@@ -76,7 +116,7 @@ export default function Navbar() {
           <button
             id="burger"
             className={menuOpen ? "open" : ""}
-            aria-label="Open menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={toggleMenu}
           >
             <div className="bun top" />
@@ -89,7 +129,7 @@ export default function Navbar() {
       <div id="overlay" className={menuOpen ? "open" : ""}>
         <div className="ov-left">
           <a
-            href="#works"
+            href="/#works"
             className="ov-link"
             onClick={(e) => handleLinkClick(e, "#works")}
           >
@@ -99,16 +139,13 @@ export default function Navbar() {
           <a
             href="/services"
             className="ov-link"
-            onClick={(e) => {
-              setMenuOpen(false);
-              document.body.style.overflow = "";
-            }}
+            onClick={(e) => handleLinkClick(e, "/services")}
           >
             <span>Services</span>
             <span className="arrow">↗</span>
           </a>
           <a
-            href="#about"
+            href="/#about"
             className="ov-link"
             onClick={(e) => handleLinkClick(e, "#about")}
           >
@@ -116,7 +153,7 @@ export default function Navbar() {
             <span className="arrow">↗</span>
           </a>
           <a
-            href="#clients"
+            href="/#clients"
             className="ov-link"
             onClick={(e) => handleLinkClick(e, "#clients")}
           >
@@ -124,7 +161,7 @@ export default function Navbar() {
             <span className="arrow">↗</span>
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className="ov-link"
             onClick={(e) => handleLinkClick(e, "#contact")}
           >
